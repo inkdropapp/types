@@ -1,0 +1,58 @@
+import type { InkdropDatabase } from '@inkdropapp/pouchdb-store';
+import type { Store as ReduxStore, Dispatch as ReduxDispatch } from 'redux';
+import type { NotesActionType } from './actions/notes';
+import type { BooksActionType } from './actions/books';
+import type { TagsActionType } from './actions/tags';
+import type { DBActionType } from './actions/db';
+import type { ConfigActionType } from './actions/config';
+import type { SessionActionType } from './actions/session';
+import type { QueryContextActionType } from './actions/query-context';
+import type { EditingNoteActionType } from './actions/editing-note';
+import type { EditorActionType } from './actions/editor';
+import type { NavigationActionType } from './actions/navigation';
+import type { SidebarActionType } from './actions/sidebar';
+import type { SearchBarActionType } from './actions/search-bar';
+import type { StatsActionType } from './actions/stats';
+import type { AssistiveErrorActionType } from './actions/assistive-error';
+import type { NotesState } from './reducers/notes';
+import type { BooksState } from './reducers/books';
+import type { TagsState } from './reducers/tags';
+import type { DBState } from './reducers/db';
+import type { ConfigState } from './reducers/config';
+import type { SessionState } from './reducers/session';
+import type { QueryContextState } from './reducers/query-context';
+import type { EditingNoteState } from './reducers/editing-note';
+import type { EditorState } from './reducers/editor';
+import type { NavigationState } from './reducers/navigation';
+import type { SidebarState } from './reducers/sidebar';
+import type { SearchBarState } from './reducers/search-bar';
+import type { StatsState } from './reducers/stats';
+import type { AssistiveErrorState } from './reducers/assistive-error';
+import type { ThunkAction as ReduxThunkAction, ThunkDispatch as ReduxThunkDispatch } from 'redux-thunk';
+export type ThunkContext = {
+    db: InkdropDatabase;
+};
+export type GetThunkContext = () => ThunkContext;
+export type GetState = () => State;
+export type Action = NotesActionType | BooksActionType | TagsActionType | DBActionType | ConfigActionType | SessionActionType | QueryContextActionType | EditingNoteActionType | EditorActionType | NavigationActionType | SidebarActionType | SearchBarActionType | StatsActionType | AssistiveErrorActionType;
+export type ThunkAction<ReturnType> = ReduxThunkAction<ReturnType, State, GetThunkContext, Action>;
+export type Dispatch = ReduxThunkDispatch<State, GetThunkContext, Action> & ReduxDispatch<Action>;
+export type State = {
+    notes: NotesState;
+    books: BooksState;
+    tags: TagsState;
+    db: DBState;
+    config: ConfigState;
+    session: SessionState;
+    queryContext: QueryContextState;
+    editingNote: EditingNoteState;
+    editor: EditorState;
+    navigation: NavigationState;
+    sidebar: SidebarState;
+    searchBar: SearchBarState;
+    stats: StatsState;
+    assistiveError: AssistiveErrorState;
+};
+export interface Store extends ReduxStore<State, Action> {
+    dispatch: Dispatch;
+}
