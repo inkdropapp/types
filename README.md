@@ -17,6 +17,11 @@ Add `@inkdropapp/types` to your `tsconfig.json`:
 ```json
 {
   "compilerOptions": {
+    "paths": {
+      "inkdrop": [
+        "./node_modules/@inkdropapp/types/src/inkdrop-module/index.d.ts"
+      ]
+    },
     "types": ["@inkdropapp/types"]
   }
 }
@@ -35,22 +40,22 @@ The `inkdrop` global provides access to the application environment -- managers 
 
 ```typescript
 // Access the config
-const fontSize = inkdrop.config.get('editor.fontSize')
+const fontSize = inkdrop.config.get("editor.fontSize");
 
 // Register a command
 inkdrop.commands.add(document.body, {
-  'my-plugin:do-something': () => {
+  "my-plugin:do-something": () => {
     // ...
-  }
-})
+  },
+});
 
 // Query the local database
-const note = await inkdrop.localDB.notes.get('note:abc123')
+const note = await inkdrop.localDB.notes.get("note:abc123");
 
 // Listen for editor load
 inkdrop.onEditorLoad((editor) => {
-  console.log('Editor loaded:', editor)
-})
+  console.log("Editor loaded:", editor);
+});
 ```
 
 ### The `'inkdrop'` module
@@ -100,8 +105,8 @@ The package provides typed command maps for every scope in the application. Use 
 import type {
   EnvironmentCommands,
   EditorCommands,
-  MDELocalCommands
-} from '@inkdropapp/types'
+  MDELocalCommands,
+} from "@inkdropapp/types";
 ```
 
 Each command map is a record of command names to their parameter types. Commands that take no parameters use `undefined`:
@@ -136,67 +141,67 @@ import type {
   ModelBook,
   Logger,
   EnvironmentCommands,
-  EditorCommands
-} from '@inkdropapp/types'
+  EditorCommands,
+} from "@inkdropapp/types";
 ```
 
 ## What's included
 
 ### Environment & managers
 
-| Type | Description |
-|------|-------------|
-| `Environment` | The main application environment (`inkdrop` global) |
-| `Config` | Application configuration with schema enforcement |
-| `CommandRegistry` | Register and dispatch commands |
-| `KeymapManager` | Keybinding management |
-| `NotificationManager` | User notifications |
-| `PackageManager` | Plugin lifecycle management |
-| `ThemeManager` | Theme management |
-| `ComponentManager` | Custom React component registry |
-| `LayoutManager` | UI layout management |
-| `StyleManager` | Stylesheet management |
-| `MenuManager` | Application menu management |
-| `ContextMenuManager` | Context menu management |
-| `TelescopeManager` | Telescope (command palette) sources |
-| `MarkdownRenderer` | Markdown-to-React rendering pipeline |
-| `ApplicationDelegate` | Platform-specific application delegate |
+| Type                  | Description                                         |
+| --------------------- | --------------------------------------------------- |
+| `Environment`         | The main application environment (`inkdrop` global) |
+| `Config`              | Application configuration with schema enforcement   |
+| `CommandRegistry`     | Register and dispatch commands                      |
+| `KeymapManager`       | Keybinding management                               |
+| `NotificationManager` | User notifications                                  |
+| `PackageManager`      | Plugin lifecycle management                         |
+| `ThemeManager`        | Theme management                                    |
+| `ComponentManager`    | Custom React component registry                     |
+| `LayoutManager`       | UI layout management                                |
+| `StyleManager`        | Stylesheet management                               |
+| `MenuManager`         | Application menu management                         |
+| `ContextMenuManager`  | Context menu management                             |
+| `TelescopeManager`    | Telescope (command palette) sources                 |
+| `MarkdownRenderer`    | Markdown-to-React rendering pipeline                |
+| `ApplicationDelegate` | Platform-specific application delegate              |
 
 ### Commands
 
-| Type | Description |
-|------|-------------|
-| `EnvironmentCommands` | Commands on the global scope (`core:new-note`, `core:open-note`, etc.) |
-| `WindowCommands` | Window management commands (`window:reload`, `window:close`, etc.) |
-| `ApplicationCommands` | Application-level commands (`application:quit`, `application:open-preferences`, etc.) |
-| `EditorCommands` | Editor component commands (`core:save-note`, `editor:insert-images`, etc.) |
-| `MDECommands` | Markdown editor global commands (`editor:focus-mde`, `editor:add-extension`, etc.) |
-| `MDELocalCommands` | Markdown editor local commands (cursor movement, text formatting, etc.) |
-| `MDEPreviewCommands` | Preview pane commands |
-| `FindInNoteGlobalCommands` | Find/replace commands (global) |
-| `NoteListBarLayoutCommands` | Note list navigation commands |
-| `SidebarMenuCommands` | Sidebar commands |
-| `MainLayoutCommands` | Layout toggle commands |
-| `EditorViewMode` | Editor view mode union type (`'preview' \| 'sideBySide' \| 'edit'`) |
+| Type                        | Description                                                                           |
+| --------------------------- | ------------------------------------------------------------------------------------- |
+| `EnvironmentCommands`       | Commands on the global scope (`core:new-note`, `core:open-note`, etc.)                |
+| `WindowCommands`            | Window management commands (`window:reload`, `window:close`, etc.)                    |
+| `ApplicationCommands`       | Application-level commands (`application:quit`, `application:open-preferences`, etc.) |
+| `EditorCommands`            | Editor component commands (`core:save-note`, `editor:insert-images`, etc.)            |
+| `MDECommands`               | Markdown editor global commands (`editor:focus-mde`, `editor:add-extension`, etc.)    |
+| `MDELocalCommands`          | Markdown editor local commands (cursor movement, text formatting, etc.)               |
+| `MDEPreviewCommands`        | Preview pane commands                                                                 |
+| `FindInNoteGlobalCommands`  | Find/replace commands (global)                                                        |
+| `NoteListBarLayoutCommands` | Note list navigation commands                                                         |
+| `SidebarMenuCommands`       | Sidebar commands                                                                      |
+| `MainLayoutCommands`        | Layout toggle commands                                                                |
+| `EditorViewMode`            | Editor view mode union type (`'preview' \| 'sideBySide' \| 'edit'`)                   |
 
 ### IPC (Inter-Process Communication)
 
-| Type | Description |
-|------|-------------|
+| Type               | Description                                               |
+| ------------------ | --------------------------------------------------------- |
 | `IPCLocalDatabase` | Local PouchDB database access (notes, books, tags, files) |
-| `IPCWindow` | Window management |
-| `IPCDialog` | Native dialog access |
-| `IPCClipboard` | Clipboard access |
+| `IPCWindow`        | Window management                                         |
+| `IPCDialog`        | Native dialog access                                      |
+| `IPCClipboard`     | Clipboard access                                          |
 
 ### `'inkdrop'` module types
 
-| Type | Description |
-|------|-------------|
-| `ModelNote`, `ModelBook`, `ModelTag`, `ModelFile` | ORM model classes |
-| `Logger` | Logger interface |
-| `NoteExportHelper`, `NoteExporter` | Note export utilities |
-| `NoteImportHelper`, `NoteImporter` | Note import utilities |
-| `UseModalResult`, `ModalState` | Modal hook types |
+| Type                                              | Description           |
+| ------------------------------------------------- | --------------------- |
+| `ModelNote`, `ModelBook`, `ModelTag`, `ModelFile` | ORM model classes     |
+| `Logger`                                          | Logger interface      |
+| `NoteExportHelper`, `NoteExporter`                | Note export utilities |
+| `NoteImportHelper`, `NoteImporter`                | Note import utilities |
+| `UseModalResult`, `ModalState`                    | Modal hook types      |
 
 ## Dependencies
 
