@@ -113,7 +113,9 @@ export {
   MDESearchBarLocalCommands,
   PreviewFindBarLocalCommands,
   MainLayoutCommands,
-  NoteListBarCommands
+  NoteListBarCommands,
+  TelescopeCancelBehavior,
+  TelescopeGlobalCommands
 } from './commands'
 
 export {

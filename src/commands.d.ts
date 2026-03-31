@@ -519,3 +519,24 @@ export type NoteListBarCommands = {
   'core:open-next-note': undefined
   'core:open-prev-note': undefined
 }
+
+/** Cancel behavior for the telescope. */
+export type TelescopeCancelBehavior = 'close' | 'backToIndex' | null
+
+/** Global commands dispatched on the telescope. */
+export type TelescopeGlobalCommands = {
+  'core:toggle-telescope': undefined
+  'core:show-telescope': {
+    scopedSourceId?: string
+    scopedWorkspaceId?: string | null
+    initialSelectedItemId?: string | null
+    cancelBehavior?: TelescopeCancelBehavior
+  }
+  'core:close-telescope': undefined
+  'core:telescope-clear-query': undefined
+  'core:telescope-clear-active-source': undefined
+  'core:telescope-commands': undefined
+  'core:telescope-notebooks': undefined
+  'core:telescope-tags': undefined
+  'core:telescope-toc': undefined
+}
