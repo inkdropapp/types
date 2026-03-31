@@ -6,14 +6,13 @@
   "types": "src/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/inkdropapp/sdk.git",
-    "directory": "packages/types"
+    "url": "https://github.com/inkdropapp/types.git"
   },
   "contributors": [
     {
       "name": "Takuya Matsuyama",
       "email": "t@inkdrop.app",
-      "url": "https://www.devas.life/"
+      "url": "https://www.inkdrop.app/"
     }
   ],
   "dependencies": {
