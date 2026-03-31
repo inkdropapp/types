@@ -5,6 +5,7 @@ import type { MarkdownRenderer } from '../markdown-renderer'
 import type { NoteExportHelper } from './export-utils'
 import type { NoteImportHelper } from './import-utils'
 import type { EditorUtils } from './editor-utils'
+import { TelescopeSource } from '../telescope-manager'
 
 /**
  * The `'inkdrop'` module provides access to core APIs, utilities, and libraries
@@ -88,6 +89,24 @@ declare module 'inkdrop' {
       debugInfo: Record<string, any>
     })
   }
+
+  /**
+   * The base class for Telescope sources.
+   *
+   * Extend this class to create custom sources for the Telescope command palette.
+   *
+   * @example
+   * ```typescript
+   * import { TelescopeSource } from 'inkdrop'
+   *
+   * class MySource extends TelescopeSource {
+   *   id = 'my-source'
+   *   name = 'My Source'
+   *   // ...
+   * }
+   * ```
+   */
+  export { TelescopeSource }
 
   /**
    * A React hook for managing modal visibility state.
