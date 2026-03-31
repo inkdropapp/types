@@ -28,7 +28,7 @@ export declare class ComponentManager {
    * @param className - The name of the component class.
    * @returns The component class, or `undefined` if not registered.
    */
-  getComponentClass(className: string): ComponentType | undefined
+  getComponentClass<P = any>(className: string): ComponentType<P> | undefined
   /**
    * Invoke the given callback when a component class with the given name is registered.
    * @param klassName - The component class name to watch.
