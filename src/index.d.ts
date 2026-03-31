@@ -150,6 +150,8 @@ export {
   NoteImportHelper
 } from './inkdrop-module/import-utils'
 
+export { EditorUtils } from './inkdrop-module/editor-utils'
+
 /// <reference path="./inkdrop-module/index.d.ts" />
 
 import type { Environment } from './environment'

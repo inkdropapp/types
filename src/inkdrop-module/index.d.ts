@@ -4,6 +4,7 @@ import type { Models } from './models'
 import type { MarkdownRenderer } from '../markdown-renderer'
 import type { NoteExportHelper } from './export-utils'
 import type { NoteImportHelper } from './import-utils'
+import type { EditorUtils } from './editor-utils'
 
 /**
  * The `'inkdrop'` module provides access to core APIs, utilities, and libraries
@@ -156,6 +157,18 @@ declare module 'inkdrop' {
    * ```
    */
   export const importUtils: NoteImportHelper
+
+  /**
+   * Utility functions for interacting with the editor and preview pane.
+   *
+   * @example
+   * ```typescript
+   * import { editorUtils } from 'inkdrop'
+   * const container = editorUtils.getPreviewContainer()
+   * const lineNum = editorUtils.getLinePosOnPreview(container)
+   * ```
+   */
+  export const editorUtils: EditorUtils
 
   /**
    * Create a new logger instance with a custom namespace.
