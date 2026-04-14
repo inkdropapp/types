@@ -9,7 +9,7 @@ import { Disposable } from 'event-kit'
  */
 export declare class ComponentManager {
   /** A map of component class names to their React component types. */
-  classes: Record<string, ComponentType>
+  classes: Record<string, ComponentType<any>>
 
   /**
    * Register a React component class.
