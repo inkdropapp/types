@@ -65,7 +65,11 @@ export {
 
 export {
   MarkdownRenderer,
-  MarkdownRenderResult
+  MarkdownRenderResult,
+  EmbeddedComponentProps,
+  EmbeddedComponent,
+  EmbeddingProvider,
+  EmbeddingProviderRegistry
 } from './markdown-renderer'
 
 export {
@@ -151,6 +155,11 @@ export {
 } from './inkdrop-module/import-utils'
 
 export { EditorUtils } from './inkdrop-module/editor-utils'
+
+export {
+  LinkFormatItem,
+  LinkFormatsConfig
+} from './link-formats'
 
 /// <reference path="./inkdrop-module/index.d.ts" />
 

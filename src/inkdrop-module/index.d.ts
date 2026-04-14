@@ -5,6 +5,7 @@ import type { MarkdownRenderer } from '../markdown-renderer'
 import type { NoteExportHelper } from './export-utils'
 import type { NoteImportHelper } from './import-utils'
 import type { EditorUtils } from './editor-utils'
+import type { LinkFormatsConfig } from '../link-formats'
 import { TelescopeSource } from '../telescope-manager'
 
 /**
@@ -188,6 +189,34 @@ declare module 'inkdrop' {
    * ```
    */
   export const editorUtils: EditorUtils
+
+  /**
+   * Editor extension APIs.
+   *
+   * Provides CodeMirror facets and utilities for extending the editor.
+   *
+   * @example
+   * ```typescript
+   * import { editor } from 'inkdrop'
+   * import type { LinkFormatsConfig } from '@inkdropapp/types'
+   *
+   * const myConfig: LinkFormatsConfig = {
+   *   getInitialFormats(url) {
+   *     return [{ type: 'custom', label: 'My format', content: `[link](${url})`, order: 150 }]
+   *   }
+   * }
+   *
+   * inkdrop.commands.dispatch(document.body, 'editor:add-extension', {
+   *   extension: editor.linkFormatsConfig.of(myConfig)
+   * })
+   * ```
+   */
+  export const editor: {
+    readonly linkFormatsConfig: import('@codemirror/state').Facet<
+      LinkFormatsConfig,
+      Required<LinkFormatsConfig>
+    >
+  }
 
   /**
    * Create a new logger instance with a custom namespace.
