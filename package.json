@@ -1,6 +1,6 @@
 {
   "name": "@inkdropapp/types",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Some helper methods needed to simplify the development of plugins and themes",
   "main": "",
   "types": "src/index.d.ts",
