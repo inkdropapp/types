@@ -161,6 +161,21 @@ export {
   LinkFormatsConfig
 } from './link-formats'
 
+export { Modal, ModalProps } from './components/modal'
+
+export {
+  Dialog,
+  DialogProps,
+  DialogTitleProps,
+  DialogContentProps,
+  DialogActionsProps
+} from './components/dialog'
+
+export {
+  NotebookListBar,
+  NotebookListBarProps
+} from './components/notebook-list-bar'
+
 /// <reference path="./inkdrop-module/index.d.ts" />
 
 import type { Environment } from './environment'
