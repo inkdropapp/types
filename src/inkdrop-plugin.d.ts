@@ -1,5 +1,5 @@
 import type { Environment } from './environment'
-import type { ConfigSchema } from './config'
+import type { Config, ConfigSchema } from './config'
 
 /**
  * The lifecycle contract for an Inkdrop plugin's main module.
@@ -10,9 +10,9 @@ import type { ConfigSchema } from './config'
  *
  * @example
  * ```tsx
- * import { Environment, InkdropPlugin } from '@inkdropapp/types'
+ * import { Environment, IInkdropPlugin } from '@inkdropapp/types'
  *
- * class MyPlugin implements InkdropPlugin {
+ * class MyPlugin implements IInkdropPlugin {
  *   private disposable: { dispose(): void } | null = null
  *
  *   activate(inkdrop: Environment) {
@@ -61,18 +61,18 @@ export interface IInkdropPlugin {
    * setup needs to run separately from the main {@link InkdropPlugin.activate}
    * flow.
    */
-  activateConfig?(): void
+  activateConfig?(config: Config): void | Promise<void>
 
   /**
    * Called when this plugin is deactivated. Tear down everything created in
    * {@link InkdropPlugin.activate} — dispose subscriptions, unregister sources
    * and components, and remove layout items.
    */
-  deactivate?(): void | Promise<void>
+  deactivate?(app: Environment): void | Promise<void>
 
   /**
    * Called when this plugin is deactivated, to tear down anything registered in
    * {@link InkdropPlugin.activateConfig}.
    */
-  deactivateConfig?(): void | Promise<void>
+  deactivateConfig?(config: Config): void | Promise<void>
 }
