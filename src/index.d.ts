@@ -6,13 +6,19 @@ export {
   NotificationOptions
 } from './notification-manager'
 
-export { Config, ConfigSchema, SchemaEnforcer } from './config'
+export {
+  Config,
+  ConfigSchema,
+  ConfigSchemaType,
+  SchemaEnforcer
+} from './config'
 
 export { StyleManager, StyleElement } from './style-manager'
 
 export {
   CommandRegistry,
   CommandDescriptor,
+  CommandEvent,
   CommandCallback,
   CommandListener,
   CommandParamListBase,
@@ -101,7 +107,9 @@ export {
   MainLayoutCommands,
   NoteListBarCommands,
   TelescopeCancelBehavior,
-  TelescopeGlobalCommands
+  TelescopeGlobalCommands,
+  AIInlineAssistantPromptPreset,
+  AIGlobalCommands
 } from './commands'
 
 export { Logger, LogFunction, createLogger } from './inkdrop-module/logger'
