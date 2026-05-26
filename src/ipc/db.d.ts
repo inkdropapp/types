@@ -1,11 +1,5 @@
 import { Disposable } from 'event-kit'
-import type {
-  Note,
-  NoteStatus,
-  Book,
-  Tag,
-  File as IDFile
-} from 'inkdrop-model'
+import type { Note, NoteStatus, Book, Tag, File as IDFile } from 'inkdrop-model'
 
 /** Result of a PouchDB put/remove operation. */
 export interface PouchDBPutResult {
@@ -57,25 +51,16 @@ export interface IDBNote {
   /** Find all pinned notes. */
   findPinned(opts?: NoteQueryOptions): Promise<NoteQueryResult>
   /** Find notes in a specific notebook. */
-  findInBook(
-    bookId: string,
-    opts?: NoteQueryOptions
-  ): Promise<NoteQueryResult>
+  findInBook(bookId: string, opts?: NoteQueryOptions): Promise<NoteQueryResult>
   /** Find notes with a specific tag. */
-  findWithTag(
-    tagId: string,
-    opts?: NoteQueryOptions
-  ): Promise<NoteQueryResult>
+  findWithTag(tagId: string, opts?: NoteQueryOptions): Promise<NoteQueryResult>
   /** Find notes with a specific status. */
   findWithStatus(
     status: NoteStatus,
     opts?: NoteQueryOptions
   ): Promise<NoteQueryResult>
   /** Search notes with a parsed query. */
-  searchWithQuery(
-    query: any,
-    opts?: any
-  ): Promise<Note[] | string[]>
+  searchWithQuery(query: any, opts?: any): Promise<Note[] | string[]>
 }
 
 /** Database interface for notebooks. */
@@ -103,10 +88,7 @@ export interface IDBBook {
   /** Get all descendants of a notebook. */
   getAllChildren(parentBookId: string): Promise<Book[]>
   /** Get the chain of parent notebook IDs. */
-  getParentBookIds(
-    bookId: string,
-    parentBookIds?: string[]
-  ): Promise<string[]>
+  getParentBookIds(bookId: string, parentBookIds?: string[]): Promise<string[]>
 }
 
 /** Database interface for tags. */
@@ -150,15 +132,9 @@ export interface IDBFile {
   /** Remove sharing of a file from a note. */
   unshare(fileId: string, noteId: string): Promise<IDFile>
   /** Share all files referenced in a Markdown string. */
-  shareFilesFromMarkdown(
-    markdown: string,
-    noteId: string
-  ): Promise<IDFile[]>
+  shareFilesFromMarkdown(markdown: string, noteId: string): Promise<IDFile[]>
   /** Unshare all files referenced in a Markdown string. */
-  unshareFilesFromMarkdown(
-    markdown: string,
-    noteId: string
-  ): Promise<IDFile[]>
+  unshareFilesFromMarkdown(markdown: string, noteId: string): Promise<IDFile[]>
 }
 
 /** Database utility operations. */
@@ -184,13 +160,9 @@ export interface IDBUtils {
   /** Delete a notebook and its contents. */
   deleteBook(bookId: string): Promise<any>
   /** Update a tag's note count. */
-  updateTag(
-    tagId: string
-  ): Promise<{ updated: boolean; doc: Tag }>
+  updateTag(tagId: string): Promise<{ updated: boolean; doc: Tag }>
   /** Update a tag by name. */
-  updateTagWithName(
-    name: string
-  ): Promise<{ updated: boolean; doc: Tag }>
+  updateTagWithName(name: string): Promise<{ updated: boolean; doc: Tag }>
   /** Delete a tag and remove it from all notes. */
   deleteTag(tagId: string): Promise<boolean | PouchDBPutResult>
 }
@@ -219,28 +191,20 @@ export declare class IPCLocalDatabase {
    * @param callback - Called with the change object.
    * @returns A {@link Disposable} on which `.dispose()` can be called to unsubscribe.
    */
-  onChange(
-    callback: (change: Record<string, any>) => void
-  ): Disposable
+  onChange(callback: (change: Record<string, any>) => void): Disposable
   /**
    * Subscribe to note changes only.
    * @returns A {@link Disposable} on which `.dispose()` can be called to unsubscribe.
    */
-  onNoteChange(
-    callback: (change: Record<string, any>) => void
-  ): Disposable
+  onNoteChange(callback: (change: Record<string, any>) => void): Disposable
   /**
    * Subscribe to notebook changes only.
    * @returns A {@link Disposable} on which `.dispose()` can be called to unsubscribe.
    */
-  onBookChange(
-    callback: (change: Record<string, any>) => void
-  ): Disposable
+  onBookChange(callback: (change: Record<string, any>) => void): Disposable
   /**
    * Subscribe to tag changes only.
    * @returns A {@link Disposable} on which `.dispose()` can be called to unsubscribe.
    */
-  onTagChange(
-    callback: (change: Record<string, any>) => void
-  ): Disposable
+  onTagChange(callback: (change: Record<string, any>) => void): Disposable
 }

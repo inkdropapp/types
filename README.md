@@ -40,22 +40,22 @@ The `inkdrop` global provides access to the application environment -- managers 
 
 ```typescript
 // Access the config
-const fontSize = inkdrop.config.get("editor.fontSize");
+const fontSize = inkdrop.config.get('editor.fontSize')
 
 // Register a command
 inkdrop.commands.add(document.body, {
-  "my-plugin:do-something": () => {
+  'my-plugin:do-something': () => {
     // ...
-  },
-});
+  }
+})
 
 // Query the local database
-const note = await inkdrop.localDB.notes.get("note:abc123");
+const note = await inkdrop.localDB.notes.get('note:abc123')
 
 // Listen for editor load
-inkdrop.onEditorLoad((editor) => {
-  console.log("Editor loaded:", editor);
-});
+inkdrop.onEditorLoad(editor => {
+  console.log('Editor loaded:', editor)
+})
 ```
 
 ### The `'inkdrop'` module
@@ -105,8 +105,8 @@ The package provides typed command maps for every scope in the application. Use 
 import type {
   EnvironmentCommands,
   EditorCommands,
-  MDELocalCommands,
-} from "@inkdropapp/types";
+  MDELocalCommands
+} from '@inkdropapp/types'
 ```
 
 Each command map is a record of command names to their parameter types. Commands that take no parameters use `undefined`:
@@ -141,8 +141,8 @@ import type {
   ModelBook,
   Logger,
   EnvironmentCommands,
-  EditorCommands,
-} from "@inkdropapp/types";
+  EditorCommands
+} from '@inkdropapp/types'
 ```
 
 ## What's included

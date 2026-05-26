@@ -96,10 +96,7 @@ export declare class Config {
    * @param callback - Called immediately with the current value and again on changes.
    * @returns A {@link Disposable} to unsubscribe.
    */
-  observe(
-    keyPath: string,
-    callback: (value: any) => void
-  ): Disposable
+  observe(keyPath: string, callback: (value: any) => void): Disposable
   /**
    * Add a listener for changes to a given key path with scope options.
    *
