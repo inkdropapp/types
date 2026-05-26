@@ -101,6 +101,9 @@ export default new MyPlugin()
 
 ### The `inkdrop` global
 
+> [!WARNING]
+> **Deprecated.** Relying on the global `inkdrop` is discouraged. Prefer the `Environment` passed to your plugin's `activate(app)` (and other lifecycle) methods. The global remains available for backwards compatibility.
+
 The `inkdrop` global provides access to the application environment -- managers for commands, keymaps, packages, notifications, the local database, and more.
 
 ```typescript

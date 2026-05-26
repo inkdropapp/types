@@ -170,5 +170,10 @@ export {
 import type { Environment } from './environment'
 
 declare global {
+  /**
+   * @deprecated Relying on the global `inkdrop` is discouraged. Use the
+   * {@link Environment} passed to your plugin's `activate(app)` (and other
+   * lifecycle) methods instead. See {@link IInkdropPlugin}.
+   */
   var inkdrop: Environment
 }
