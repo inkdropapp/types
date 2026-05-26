@@ -52,6 +52,8 @@ export {
 export {
   MarkdownRenderer,
   MarkdownRenderResult,
+  MarkdownRendererContextType,
+  CodeComponentProps,
   EmbeddedComponentProps,
   EmbeddedComponent,
   EmbeddingProvider,
@@ -140,6 +142,13 @@ export { NoteImporter, NoteImportHelper } from './inkdrop-module/import-utils'
 export { EditorUtils } from './inkdrop-module/editor-utils'
 
 export { LinkFormatItem, LinkFormatsConfig } from './link-formats'
+
+export { Button, ButtonProps } from './components/button'
+
+export {
+  CommandButton,
+  CommandButtonProps
+} from './components/command-button'
 
 export { Modal, ModalProps } from './components/modal'
 

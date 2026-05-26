@@ -1,5 +1,24 @@
+import type { NoteMetadata } from 'inkdrop-model'
+
 /** Props passed to an embedded component, same as an anchor element's props. */
 export type EmbeddedComponentProps = JSX.IntrinsicElements['a']
+
+/**
+ * Props passed to a custom code block component registered via
+ * {@link MarkdownRenderer.remarkCodeComponents}.
+ */
+export type CodeComponentProps = {
+  /** The language identifier of the fenced code block (e.g. `'js'`). */
+  lang: string
+  /** Parsed key/value pairs from the code fence's meta string. */
+  meta?: Record<string, string>
+  /** Whether the block is a fenced code block (```), as opposed to indented. */
+  fenced?: boolean
+  /** Additional class name applied to the rendered element. */
+  className?: string
+  /** The raw lines of the code block. */
+  children: string[]
+}
 
 /** A React component that renders an embedded content view for a given URL. */
 export type EmbeddedComponent = React.FC<EmbeddedComponentProps>
@@ -44,6 +63,22 @@ export declare class EmbeddingProviderRegistry {
   getProviderForURL(url: string): EmbeddingProvider | null
 }
 
+/** The value provided by {@link MarkdownRenderer.Context}. */
+export type MarkdownRendererContextType = {
+  /** The renderer instance that produced the surrounding content. */
+  renderer: MarkdownRenderer
+  /** Whether the content is being rendered for printing/exporting. */
+  printMode: boolean
+  /** Emitter for renderer lifecycle events. */
+  events?: any
+  /** Metadata of the note being rendered, if available. */
+  metadata?: NoteMetadata | null
+  /** The parsed Markdown AST (mdast). */
+  mdast?: any
+  /** The transformed HTML AST (hast). */
+  hast?: any
+}
+
 export interface MarkdownRenderResult {
   /** The rendered React element tree. */
   result: JSX.Element
@@ -74,6 +109,21 @@ export declare class MarkdownRenderer {
   remarkCodeComponents: Record<string, any>
   /** Registry for embedding providers that render rich content inline in the preview. */
   embeddings: EmbeddingProviderRegistry
+  /**
+   * React context carrying the renderer instance and the current render state.
+   *
+   * Use it from a custom React component (registered via
+   * {@link MarkdownRenderer.remarkReactComponents} or
+   * {@link MarkdownRenderer.remarkCodeComponents}) to access the renderer,
+   * print mode, note metadata, and the parsed ASTs.
+   *
+   * @example
+   * ```tsx
+   * import { useContext } from 'react'
+   * const { renderer, printMode } = useContext(inkdrop.markdownRenderer.Context)
+   * ```
+   */
+  Context: React.Context<MarkdownRendererContextType>
 
   /**
    * Renders a Markdown string into a React element tree.
