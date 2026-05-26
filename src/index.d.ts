@@ -6,16 +6,9 @@ export {
   NotificationOptions
 } from './notification-manager'
 
-export {
-  Config,
-  ConfigSchema,
-  SchemaEnforcer
-} from './config'
+export { Config, ConfigSchema, SchemaEnforcer } from './config'
 
-export {
-  StyleManager,
-  StyleElement
-} from './style-manager'
+export { StyleManager, StyleElement } from './style-manager'
 
 export {
   CommandRegistry,
@@ -28,28 +21,15 @@ export {
 
 export { ComponentManager } from './component-manager'
 
-export {
-  KeymapManager,
-  KeyBinding
-} from './keymap-manager'
+export { KeymapManager, KeyBinding } from './keymap-manager'
 
-export {
-  MenuManager,
-  MenuItem
-} from './menu-manager'
+export { MenuManager, MenuItem } from './menu-manager'
 
-export {
-  ContextMenuManager,
-  ContextMenuItem
-} from './context-menu-manager'
+export { ContextMenuManager, ContextMenuItem } from './context-menu-manager'
 
 export { LayoutManager } from './layout-manager'
 
-export {
-  PackageManager,
-  Package,
-  PackageMetadata
-} from './package-manager'
+export { PackageManager, Package, PackageMetadata } from './package-manager'
 
 export { ThemeManager } from './theme-manager'
 
@@ -92,6 +72,8 @@ export { ApplicationDelegate } from './application-delegate'
 
 export { Environment } from './environment'
 
+export { IInkdropPlugin } from './inkdrop-plugin'
+
 export {
   EditorViewMode,
   EnvironmentCommands,
@@ -122,11 +104,7 @@ export {
   TelescopeGlobalCommands
 } from './commands'
 
-export {
-  Logger,
-  LogFunction,
-  createLogger
-} from './inkdrop-module/logger'
+export { Logger, LogFunction, createLogger } from './inkdrop-module/logger'
 
 export {
   useModal,
@@ -149,17 +127,11 @@ export {
   RenderOptions
 } from './inkdrop-module/export-utils'
 
-export {
-  NoteImporter,
-  NoteImportHelper
-} from './inkdrop-module/import-utils'
+export { NoteImporter, NoteImportHelper } from './inkdrop-module/import-utils'
 
 export { EditorUtils } from './inkdrop-module/editor-utils'
 
-export {
-  LinkFormatItem,
-  LinkFormatsConfig
-} from './link-formats'
+export { LinkFormatItem, LinkFormatsConfig } from './link-formats'
 
 export { Modal, ModalProps } from './components/modal'
 
