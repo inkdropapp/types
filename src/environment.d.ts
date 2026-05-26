@@ -112,6 +112,19 @@ export declare class Environment {
    */
   onEditorUnload(callback: () => any): Disposable
   /**
+   * Run the given callback with the active editor, waiting for one if needed.
+   *
+   * If an editor is already loaded, the callback is invoked synchronously.
+   * Otherwise it is invoked once on the next `editor:load` event, after which
+   * the subscription disposes itself. Use this instead of
+   * `getActiveEditorOrThrowError()` when editor work may run before the editor
+   * has mounted (e.g. in windows without an editor, the callback simply never
+   * fires rather than throwing).
+   *
+   * @param callback - A function to be invoked with the loaded {@link EditorView}.
+   */
+  ensureEditorLoaded(callback: (editor: EditorView) => any): void
+  /**
    * Invoke the given callback when the application is ready.
    * @returns A {@link Disposable} to unsubscribe.
    */
