@@ -185,6 +185,7 @@ export type MDELocalCommands = {
   'core:insert-alert-caution': undefined
   'editor:select-lines-upward': undefined
   'editor:select-lines-downward': undefined
+  'editor:new-line-continue-markup': undefined
   'editor:new-line': undefined
   'editor:indent': undefined
   'editor:unindent': undefined
@@ -263,6 +264,10 @@ export type MDELocalCommands = {
   'editor:move-completion-selection-down': undefined
   'editor:move-completion-selection-page-up': undefined
   'editor:move-completion-selection-page-down': undefined
+  'editor:paste-url': {
+    url: string
+  }
+  'editor:edit-with-ai': undefined
 
   'table-editor:select-cell': undefined
   'table-editor:next-cell': undefined
@@ -539,4 +544,24 @@ export type TelescopeGlobalCommands = {
   'core:telescope-notebooks': undefined
   'core:telescope-tags': undefined
   'core:telescope-toc': undefined
+}
+
+/** A prompt preset shown in the AI inline assistant. */
+export type AIInlineAssistantPromptPreset = {
+  /** A unique identifier for the preset. */
+  id: string
+  /** The label displayed in the inline assistant menu. */
+  label: string
+  /** The prompt text sent to the AI model. */
+  prompt: string
+}
+
+/** Global commands for AI features. */
+export type AIGlobalCommands = {
+  'ai:add-inline-assistant-prompt-presets': {
+    presets: AIInlineAssistantPromptPreset[]
+  }
+  'ai:remove-inline-assistant-prompt-presets': {
+    ids: string[]
+  }
 }

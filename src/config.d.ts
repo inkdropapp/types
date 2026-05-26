@@ -1,17 +1,30 @@
 import { Disposable } from 'event-kit'
 
+export type ConfigSchemaType =
+  | 'any'
+  | 'integer'
+  | 'number'
+  | 'boolean'
+  | 'string'
+  | 'null'
+  | 'object'
+  | 'array'
+  | 'color'
+
 export interface ConfigSchema {
-  type: string
-  properties?: Record<string, any>
-  additionalProperties?: boolean | Record<string, any>
+  type: ConfigSchemaType | ConfigSchemaType[]
+  title?: string
+  description?: string
+  order?: number
+  properties?: Record<string, ConfigSchema>
+  additionalProperties?: boolean | ConfigSchema
   default?: any
-  scopes?: Record<string, any>
-  items?: any
+  scopes?: Record<string, Partial<ConfigSchema>>
+  items?: ConfigSchema
   minimum?: number
   maximum?: number
   maximumLength?: number
   enum?: any[]
-  [key: string]: any
 }
 
 export type SchemaEnforcer = (

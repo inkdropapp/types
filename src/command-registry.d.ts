@@ -1,8 +1,27 @@
 import { Disposable } from 'event-kit'
 
+/**
+ * The event delivered to command handlers. inkdrop-keymap injects these extra
+ * members onto the dispatched `CustomEvent` via prototype-chain injection
+ * (see inkdrop-keymap's `command-event.js`).
+ */
+export interface CommandEvent<CommandParams = any | undefined>
+  extends CustomEvent<CommandParams> {
+  /** `true` once `abortKeyBinding()` has been called. */
+  keyBindingAborted: boolean
+  /** `true` once propagation has been stopped via the methods below. */
+  propagationStopped: boolean
+  /**
+   * Prevents the keymap from calling `preventDefault()` on the originating
+   * keyboard event, letting the keystroke fall through to native handling
+   * (e.g. inserting a newline in a textarea).
+   */
+  abortKeyBinding(): void
+}
+
 /** Callback function for handling a dispatched command. */
 export type CommandCallback<CommandParams = any | undefined> = (
-  event: CustomEvent<CommandParams>
+  event: CommandEvent<CommandParams>
 ) => void | Promise<void>
 
 /** Object-form command listener with metadata. */

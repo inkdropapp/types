@@ -9,6 +9,7 @@ export {
 export {
   Config,
   ConfigSchema,
+  ConfigSchemaType,
   SchemaEnforcer
 } from './config'
 
@@ -20,6 +21,7 @@ export {
 export {
   CommandRegistry,
   CommandDescriptor,
+  CommandEvent,
   CommandCallback,
   CommandListener,
   CommandParamListBase,
@@ -119,7 +121,9 @@ export {
   MainLayoutCommands,
   NoteListBarCommands,
   TelescopeCancelBehavior,
-  TelescopeGlobalCommands
+  TelescopeGlobalCommands,
+  AIInlineAssistantPromptPreset,
+  AIGlobalCommands
 } from './commands'
 
 export {
