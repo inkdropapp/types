@@ -5,8 +5,9 @@ import { Disposable } from 'event-kit'
  * members onto the dispatched `CustomEvent` via prototype-chain injection
  * (see inkdrop-keymap's `command-event.js`).
  */
-export interface CommandEvent<CommandParams = any | undefined>
-  extends CustomEvent<CommandParams> {
+export interface CommandEvent<
+  CommandParams = any | undefined
+> extends CustomEvent<CommandParams> {
   /** `true` once `abortKeyBinding()` has been called. */
   keyBindingAborted: boolean
   /** `true` once propagation has been stopped via the methods below. */

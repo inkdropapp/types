@@ -63,14 +63,14 @@ export default new MyPlugin()
 
 #### Lifecycle methods
 
-| Method                    | Required | Called when                                                                                  |
-| ------------------------- | -------- | -------------------------------------------------------------------------------------------- |
-| `activate(app)`           | ✅       | The plugin is activated. Set up commands, components, sources, and layout items here.        |
-| `deactivate(app)`         |          | The plugin is deactivated. Dispose subscriptions and unregister everything from `activate`.  |
-| `initialize()`            |          | Once before `activate`, for setup that must run before deserializers and view providers.     |
-| `config`                  |          | A `Record<string, ConfigSchema>` registering config options (alternative to `package.json`). |
-| `activateConfig(config)`  |          | During activation, when config setup needs to run separately from `activate`.                |
-| `deactivateConfig(config)` |         | On deactivation, to tear down anything registered in `activateConfig`.                       |
+| Method                     | Required | Called when                                                                                  |
+| -------------------------- | -------- | -------------------------------------------------------------------------------------------- |
+| `activate(app)`            | ✅       | The plugin is activated. Set up commands, components, sources, and layout items here.        |
+| `deactivate(app)`          |          | The plugin is deactivated. Dispose subscriptions and unregister everything from `activate`.  |
+| `initialize()`             |          | Once before `activate`, for setup that must run before deserializers and view providers.     |
+| `config`                   |          | A `Record<string, ConfigSchema>` registering config options (alternative to `package.json`). |
+| `activateConfig(config)`   |          | During activation, when config setup needs to run separately from `activate`.                |
+| `deactivateConfig(config)` |          | On deactivation, to tear down anything registered in `activateConfig`.                       |
 
 `activate`, `deactivate`, `activateConfig`, and `deactivateConfig` may be synchronous or return a `Promise`. The `app` argument is the `Environment`; the `config` argument is the `Config` manager.
 
@@ -214,24 +214,24 @@ import type {
 
 ### Environment & managers
 
-| Type                  | Description                                         |
-| --------------------- | --------------------------------------------------- |
-| `Environment`         | The main application environment (`inkdrop` global) |
+| Type                  | Description                                              |
+| --------------------- | -------------------------------------------------------- |
+| `Environment`         | The main application environment (`inkdrop` global)      |
 | `IInkdropPlugin`      | The lifecycle contract a plugin's main module implements |
-| `Config`              | Application configuration with schema enforcement   |
-| `CommandRegistry`     | Register and dispatch commands                      |
-| `KeymapManager`       | Keybinding management                               |
-| `NotificationManager` | User notifications                                  |
-| `PackageManager`      | Plugin lifecycle management                         |
-| `ThemeManager`        | Theme management                                    |
-| `ComponentManager`    | Custom React component registry                     |
-| `LayoutManager`       | UI layout management                                |
-| `StyleManager`        | Stylesheet management                               |
-| `MenuManager`         | Application menu management                         |
-| `ContextMenuManager`  | Context menu management                             |
-| `TelescopeManager`    | Telescope (command palette) sources                 |
-| `MarkdownRenderer`    | Markdown-to-React rendering pipeline                |
-| `ApplicationDelegate` | Platform-specific application delegate              |
+| `Config`              | Application configuration with schema enforcement        |
+| `CommandRegistry`     | Register and dispatch commands                           |
+| `KeymapManager`       | Keybinding management                                    |
+| `NotificationManager` | User notifications                                       |
+| `PackageManager`      | Plugin lifecycle management                              |
+| `ThemeManager`        | Theme management                                         |
+| `ComponentManager`    | Custom React component registry                          |
+| `LayoutManager`       | UI layout management                                     |
+| `StyleManager`        | Stylesheet management                                    |
+| `MenuManager`         | Application menu management                              |
+| `ContextMenuManager`  | Context menu management                                  |
+| `TelescopeManager`    | Telescope (command palette) sources                      |
+| `MarkdownRenderer`    | Markdown-to-React rendering pipeline                     |
+| `ApplicationDelegate` | Platform-specific application delegate                   |
 
 ### Commands
 
