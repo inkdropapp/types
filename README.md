@@ -34,28 +34,93 @@ This enables two things:
 
 ## Usage
 
+### Defining a plugin
+
+A plugin's entry module should **default-export** an object that implements the `IInkdropPlugin` interface. Inkdrop's package manager calls its lifecycle methods as the plugin is loaded, activated, and deactivated. The only required method is `activate`, which receives the `Environment` (the same object as the `inkdrop` global).
+
+```tsx
+import { Environment, IInkdropPlugin } from '@inkdropapp/types'
+
+class MyPlugin implements IInkdropPlugin {
+  private disposable: { dispose(): void } | null = null
+
+  activate(inkdrop: Environment) {
+    // Register commands, components, telescope sources, layout items, etc.
+    this.disposable = inkdrop.commands.add(document.body, {
+      'my-plugin:hello': () => console.log('Hello from my plugin')
+    })
+  }
+
+  deactivate() {
+    // Tear down everything created in activate()
+    this.disposable?.dispose()
+    this.disposable = null
+  }
+}
+
+export default new MyPlugin()
+```
+
+#### Lifecycle methods
+
+| Method                    | Required | Called when                                                                                  |
+| ------------------------- | -------- | -------------------------------------------------------------------------------------------- |
+| `activate(app)`           | ✅       | The plugin is activated. Set up commands, components, sources, and layout items here.        |
+| `deactivate(app)`         |          | The plugin is deactivated. Dispose subscriptions and unregister everything from `activate`.  |
+| `initialize()`            |          | Once before `activate`, for setup that must run before deserializers and view providers.     |
+| `config`                  |          | A `Record<string, ConfigSchema>` registering config options (alternative to `package.json`). |
+| `activateConfig(config)`  |          | During activation, when config setup needs to run separately from `activate`.                |
+| `deactivateConfig(config)` |         | On deactivation, to tear down anything registered in `activateConfig`.                       |
+
+`activate`, `deactivate`, `activateConfig`, and `deactivateConfig` may be synchronous or return a `Promise`. The `app` argument is the `Environment`; the `config` argument is the `Config` manager.
+
+#### Declaring config options
+
+Config can be declared on the plugin object so the settings UI can render editors for each option:
+
+```tsx
+import { ConfigSchema, Environment, IInkdropPlugin } from '@inkdropapp/types'
+
+class MyPlugin implements IInkdropPlugin {
+  config: Record<string, ConfigSchema> = {
+    greeting: {
+      title: 'Greeting',
+      type: 'string',
+      default: 'Hello'
+    }
+  }
+
+  activate(inkdrop: Environment) {
+    const greeting = inkdrop.config.get('my-plugin.greeting')
+    console.log(greeting)
+  }
+}
+
+export default new MyPlugin()
+```
+
 ### The `inkdrop` global
 
 The `inkdrop` global provides access to the application environment -- managers for commands, keymaps, packages, notifications, the local database, and more.
 
 ```typescript
 // Access the config
-const fontSize = inkdrop.config.get("editor.fontSize");
+const fontSize = inkdrop.config.get('editor.fontSize')
 
 // Register a command
 inkdrop.commands.add(document.body, {
-  "my-plugin:do-something": () => {
+  'my-plugin:do-something': () => {
     // ...
-  },
-});
+  }
+})
 
 // Query the local database
-const note = await inkdrop.localDB.notes.get("note:abc123");
+const note = await inkdrop.localDB.notes.get('note:abc123')
 
 // Listen for editor load
-inkdrop.onEditorLoad((editor) => {
-  console.log("Editor loaded:", editor);
-});
+inkdrop.onEditorLoad(editor => {
+  console.log('Editor loaded:', editor)
+})
 ```
 
 ### The `'inkdrop'` module
@@ -105,8 +170,8 @@ The package provides typed command maps for every scope in the application. Use 
 import type {
   EnvironmentCommands,
   EditorCommands,
-  MDELocalCommands,
-} from "@inkdropapp/types";
+  MDELocalCommands
+} from '@inkdropapp/types'
 ```
 
 Each command map is a record of command names to their parameter types. Commands that take no parameters use `undefined`:
@@ -141,8 +206,8 @@ import type {
   ModelBook,
   Logger,
   EnvironmentCommands,
-  EditorCommands,
-} from "@inkdropapp/types";
+  EditorCommands
+} from '@inkdropapp/types'
 ```
 
 ## What's included
@@ -152,6 +217,7 @@ import type {
 | Type                  | Description                                         |
 | --------------------- | --------------------------------------------------- |
 | `Environment`         | The main application environment (`inkdrop` global) |
+| `IInkdropPlugin`      | The lifecycle contract a plugin's main module implements |
 | `Config`              | Application configuration with schema enforcement   |
 | `CommandRegistry`     | Register and dispatch commands                      |
 | `KeymapManager`       | Keybinding management                               |

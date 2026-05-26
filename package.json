@@ -4,6 +4,9 @@
   "description": "Some helper methods needed to simplify the development of plugins and themes",
   "main": "",
   "types": "src/index.d.ts",
+  "scripts": {
+    "format": "prettier --write ."
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/inkdropapp/types.git"

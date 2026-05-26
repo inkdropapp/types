@@ -41,10 +41,7 @@ export declare class LayoutManager {
    * @param layoutName - The layout name.
    * @param componentClassName - The component class name to add.
    */
-  addComponentToLayout(
-    layoutName: string,
-    componentClassName: string
-  ): void
+  addComponentToLayout(layoutName: string, componentClassName: string): void
   /**
    * Insert a component into a layout before a reference component.
    * @param layoutName - The layout name.

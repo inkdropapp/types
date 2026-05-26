@@ -165,7 +165,5 @@ export declare class TelescopeManager {
    * @param context - The telescope context.
    * @returns An array of results from all sources, or `null` on error.
    */
-  getSourceItems(
-    context: TelescopeContext
-  ): Promise<TelescopeResult[] | null>
+  getSourceItems(context: TelescopeContext): Promise<TelescopeResult[] | null>
 }

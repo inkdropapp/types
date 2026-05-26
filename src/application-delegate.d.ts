@@ -13,10 +13,7 @@ export declare class ApplicationDelegate {
    * @param opts.newWindow - Whether to open the note in a new window.
    * @returns Whether the URI was successfully opened.
    */
-  openUri(
-    uri: string,
-    opts?: { newWindow?: boolean }
-  ): boolean
+  openUri(uri: string, opts?: { newWindow?: boolean }): boolean
   /**
    * Open a URL in the user's default external browser.
    * If the URL scheme is not `https:` and not in the allowed list, a confirmation
