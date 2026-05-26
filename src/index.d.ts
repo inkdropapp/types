@@ -165,6 +165,13 @@ export {
   LinkFormatsConfig
 } from './link-formats'
 
+export { Button, ButtonProps } from './components/button'
+
+export {
+  CommandButton,
+  CommandButtonProps
+} from './components/command-button'
+
 export { Modal, ModalProps } from './components/modal'
 
 export {
