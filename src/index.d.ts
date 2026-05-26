@@ -52,6 +52,8 @@ export {
 export {
   MarkdownRenderer,
   MarkdownRenderResult,
+  MarkdownRendererContextType,
+  CodeComponentProps,
   EmbeddedComponentProps,
   EmbeddedComponent,
   EmbeddingProvider,

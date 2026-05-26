@@ -168,7 +168,7 @@ export declare class Config {
    * @param options - May include `sources`, `excludeSources`, or `scope`.
    * @returns The value from the default settings or the user's configuration file.
    */
-  get(keyPath?: string, options?: any): any
+  get<T = any>(keyPath?: string, options?: any): T
   /**
    * Get all of the values for the given key-path, along with their
    * associated scope selector.
