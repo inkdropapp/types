@@ -120,9 +120,9 @@ inkdrop.commands.add(document.body, {
 // Query the local database
 const note = await inkdrop.localDB.notes.get('note:abc123')
 
-// Listen for editor load
-inkdrop.onEditorLoad(editor => {
-  console.log('Editor loaded:', editor)
+// Run code with the active editor, waiting for one if needed
+inkdrop.ensureEditorLoaded(editor => {
+  console.log('Editor ready:', editor)
 })
 ```
 
