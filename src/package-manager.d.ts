@@ -8,7 +8,7 @@ export interface PackageMetadata {
   version?: string
   description?: string
   keywords?: string[]
-  theme?: 'syntax' | 'ui' | 'preview'
+  theme?: boolean
   themeAppearance?: 'dark' | 'light'
   readme?: string
   repository?: { type?: string; url?: string } | string

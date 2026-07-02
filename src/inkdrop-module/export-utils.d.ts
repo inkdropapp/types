@@ -43,18 +43,6 @@ export declare class NoteExporter {
   getMdast(): any
 
   /**
-   * Get all image nodes from the parsed AST.
-   * @returns An array of mdast Image nodes.
-   */
-  getImageNodes(): any[]
-
-  /**
-   * Get document IDs of all attachment images in the note.
-   * @returns An array of file document IDs (e.g., `'file:abc123'`).
-   */
-  getAttachmentImageDocIds(): string[]
-
-  /**
    * Insert a heading with the given title at the beginning of the AST.
    * If the document starts with YAML frontmatter, the heading is inserted after it.
    * @param title - The title text to insert.

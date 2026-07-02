@@ -13,6 +13,11 @@ export interface CommandEvent<
   /** `true` once propagation has been stopped via the methods below. */
   propagationStopped: boolean
   /**
+   * The DOM keyboard event that triggered this command, when dispatched by the
+   * keymap. Absent for programmatic dispatches (command palette, menus, etc.).
+   */
+  originalEvent?: KeyboardEvent
+  /**
    * Prevents the keymap from calling `preventDefault()` on the originating
    * keyboard event, letting the keystroke fall through to native handling
    * (e.g. inserting a newline in a textarea).

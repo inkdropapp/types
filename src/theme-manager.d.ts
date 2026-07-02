@@ -25,8 +25,21 @@ export declare class ThemeManager {
   /** Get all the active themes. */
   getActiveThemes(): Package[]
   /**
-   * Get the enabled theme names from the config.
-   * @returns An array of theme names in the order that they should be activated.
+   * Read a theme package's `palette.json` — a map of CSS variable name to color
+   * value (e.g. `{ "--page-background": "hsl(192deg 100% 5%)" }`).
+   *
+   * Stateless: it re-reads the file on each call, so callers that need it
+   * repeatedly (e.g. a preview grid) should memoize the result.
+   *
+   * @param name - The theme package name.
+   * @returns The parsed palette, or null if the theme can't be resolved or its
+   *   palette is missing/unreadable.
    */
-  getEnabledThemeNames(): string[]
+  getThemePalette(name: string): Record<string, string> | null
+  /**
+   * Get the enabled theme name from the config.
+   *
+   * @returns The theme name to activate.
+   */
+  getEnabledThemeName(): string
 }

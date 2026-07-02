@@ -161,7 +161,7 @@ export declare class Config {
    *
    * @example
    * ```js
-   * inkdrop.config.get('core.themes')
+   * inkdrop.config.get('core.theme')
    * ```
    *
    * @param keyPath - The name of the key to retrieve.
@@ -188,7 +188,7 @@ export declare class Config {
    *
    * @example
    * ```js
-   * inkdrop.config.set('core.themes', ['default-dark-ui', 'default-dark-syntax'])
+   * inkdrop.config.set('core.theme', 'default-dark')
    * ```
    *
    * @param keyPath - The name of the key.

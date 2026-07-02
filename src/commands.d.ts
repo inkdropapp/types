@@ -268,6 +268,9 @@ export type MDELocalCommands = {
     url: string
   }
   'editor:edit-with-ai': undefined
+  'editor:accept-nes': undefined
+  'editor:dismiss-nes': undefined
+  'editor:trigger-nes': undefined
 
   'table-editor:select-cell': undefined
   'table-editor:next-cell': undefined
@@ -493,11 +496,20 @@ export type NoteListSearchBarCommands = {
   }
 }
 
-/** Commands dispatched on the editor drawer. */
-export type EditorDrawerCommands = {
-  'core:toggle-editor-drawer': undefined
-  'core:show-editor-drawer': undefined
-  'core:close-editor-drawer': undefined
+/** Commands dispatched on the editor action menu. */
+export type EditorActionMenuCommands = {
+  'core:show-editor-action-menu': undefined
+}
+
+/** Commands dispatched locally on a menu. */
+export type MenuLocalCommands = {
+  'core:toggle-menu': undefined
+  'core:select-prev-item': undefined
+  'core:select-next-item': undefined
+  'core:select-first-item': undefined
+  'core:select-last-item': undefined
+  'core:submit': undefined
+  'core:cancel': undefined
 }
 
 /** Commands dispatched locally on the editor search bar. */
