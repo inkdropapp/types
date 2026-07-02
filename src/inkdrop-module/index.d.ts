@@ -133,6 +133,27 @@ declare module 'inkdrop' {
   export function useModal(initialState?: boolean): UseModalResult
 
   /**
+   * A React hook that subscribes to a value in the app's local config store.
+   *
+   * The component re-renders whenever the value at `configPath` changes.
+   *
+   * @param configPath - Dot-separated path into the local config (e.g. `'ai.disabled'`).
+   * @param defaultValue - Value returned while the value at `configPath` is `undefined`.
+   * @returns The current value at `configPath`, or `defaultValue` if it is `undefined`.
+   *
+   * @example
+   * ```typescript
+   * import { useLocalConfigValue } from 'inkdrop'
+   *
+   * function MyComponent() {
+   *   const aiDisabled = useLocalConfigValue<boolean>('ai.disabled', false)
+   *   return <div>{aiDisabled ? 'AI disabled' : 'AI enabled'}</div>
+   * }
+   * ```
+   */
+  export function useLocalConfigValue<T = any>(configPath: string, defaultValue?: T): T
+
+  /**
    * Convert an HTML string to Markdown.
    *
    * @param html - The HTML content to convert.
