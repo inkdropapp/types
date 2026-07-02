@@ -1,11 +1,6 @@
 import { Disposable } from 'event-kit'
 
-export type NotificationType =
-  | 'fatal'
-  | 'error'
-  | 'warning'
-  | 'info'
-  | 'success'
+export type NotificationType = 'fatal' | 'error' | 'warning' | 'info' | 'success'
 
 export interface NotificationButton {
   /** A class name to add to the button's default class name. */
@@ -42,11 +37,7 @@ export declare class Notification {
   dismissed: boolean
   displayed: boolean
 
-  constructor(
-    type: NotificationType,
-    message: string,
-    options?: NotificationOptions
-  )
+  constructor(type: NotificationType, message: string, options?: NotificationOptions)
 
   /**
    * Invoke the given callback when the notification is dismissed.
@@ -98,9 +89,7 @@ export declare class NotificationManager {
    * @param callback - Called after the notification is added.
    * @returns A {@link Disposable} on which `.dispose()` can be called to unsubscribe.
    */
-  onDidAddNotification(
-    callback: (notification: Notification) => any
-  ): Disposable
+  onDidAddNotification(callback: (notification: Notification) => any): Disposable
   /**
    * Invoke the given callback after the notifications have been cleared.
    * @returns A {@link Disposable} on which `.dispose()` can be called to unsubscribe.
@@ -148,11 +137,7 @@ export declare class NotificationManager {
    * @param options - Notification options.
    * @returns The {@link Notification} that was added.
    */
-  add(
-    type: NotificationType,
-    message: string,
-    options?: NotificationOptions
-  ): Notification
+  add(type: NotificationType, message: string, options?: NotificationOptions): Notification
   addNotification(notification: Notification): Notification
   /**
    * Get all the notifications.

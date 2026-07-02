@@ -33,10 +33,7 @@ export declare class NoteImporter {
    * @param callback - Called for each imported image with the original URI and the AST node.
    * @returns The imported image nodes.
    */
-  importImages(
-    basePath: string,
-    callback?: (srcUri: string, node: any) => void
-  ): Promise<any[]>
+  importImages(basePath: string, callback?: (srcUri: string, node: any) => void): Promise<any[]>
 
   /**
    * Extract the title from the parsed Markdown.

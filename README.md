@@ -18,9 +18,7 @@ Add `@inkdropapp/types` to your `tsconfig.json`:
 {
   "compilerOptions": {
     "paths": {
-      "inkdrop": [
-        "./node_modules/@inkdropapp/types/src/inkdrop-module/index.d.ts"
-      ]
+      "inkdrop": ["./node_modules/@inkdropapp/types/src/inkdrop-module/index.d.ts"]
     },
     "types": ["@inkdropapp/types"]
   }
@@ -170,11 +168,7 @@ Other exports from the `'inkdrop'` module include:
 The package provides typed command maps for every scope in the application. Use these to get type-safe command dispatching:
 
 ```typescript
-import type {
-  EnvironmentCommands,
-  EditorCommands,
-  MDELocalCommands
-} from '@inkdropapp/types'
+import type { EnvironmentCommands, EditorCommands, MDELocalCommands } from '@inkdropapp/types'
 ```
 
 Each command map is a record of command names to their parameter types. Commands that take no parameters use `undefined`:

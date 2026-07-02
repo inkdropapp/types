@@ -1,6 +1,7 @@
 import type React from 'react'
-import type { ButtonProps } from './button'
+
 import type { CommandParamListBase } from '../command-registry'
+import type { ButtonProps } from './button'
 
 /** Props for the {@link CommandButton} component. */
 export type CommandButtonProps<

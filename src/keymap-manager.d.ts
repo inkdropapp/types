@@ -52,10 +52,7 @@ export declare class KeymapManager {
    * @returns A {@link Disposable} on which `.dispose()` can be called to unsubscribe.
    */
   onDidFailToMatchBinding(
-    callback: (event: {
-      keystrokes: string
-      keyboardEventTarget: HTMLElement
-    }) => void
+    callback: (event: { keystrokes: string; keyboardEventTarget: HTMLElement }) => void
   ): Disposable
 
   /**
@@ -66,11 +63,7 @@ export declare class KeymapManager {
    *   are objects mapping keystrokes to commands.
    * @param priority - An optional priority for conflict resolution.
    */
-  build(
-    source: string,
-    bindings: Record<string, Record<string, string>>,
-    priority?: number
-  ): void
+  build(source: string, bindings: Record<string, Record<string, string>>, priority?: number): void
   /**
    * Add sets of key bindings grouped by CSS selector.
    *
@@ -79,11 +72,7 @@ export declare class KeymapManager {
    *   are objects mapping keystrokes to commands.
    * @param priority - An optional priority for conflict resolution.
    */
-  add(
-    source: string,
-    bindings: Record<string, Record<string, string>>,
-    priority?: number
-  ): void
+  add(source: string, bindings: Record<string, Record<string, string>>, priority?: number): void
   /**
    * Get all registered key bindings.
    * @returns An array of {@link KeyBinding} objects.

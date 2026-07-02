@@ -1,12 +1,12 @@
-import type { Logger, createLogger } from './logger'
-import type { UseModalResult } from './use-modal'
-import type { Models } from './models'
+import type { LinkFormatsConfig } from '../link-formats'
 import type { MarkdownRenderer } from '../markdown-renderer'
+import { TelescopeSource } from '../telescope-manager'
+import type { EditorUtils } from './editor-utils'
 import type { NoteExportHelper } from './export-utils'
 import type { NoteImportHelper } from './import-utils'
-import type { EditorUtils } from './editor-utils'
-import type { LinkFormatsConfig } from '../link-formats'
-import { TelescopeSource } from '../telescope-manager'
+import type { Logger, createLogger } from './logger'
+import type { Models } from './models'
+import type { UseModalResult } from './use-modal'
 
 /**
  * The `'inkdrop'` module provides access to core APIs, utilities, and libraries
@@ -84,11 +84,7 @@ declare module 'inkdrop' {
     detail: string
     /** Debug information for troubleshooting. */
     debugInfo: Record<string, any>
-    constructor(opts: {
-      message: string
-      detail: string
-      debugInfo: Record<string, any>
-    })
+    constructor(opts: { message: string; detail: string; debugInfo: Record<string, any> })
   }
 
   /**

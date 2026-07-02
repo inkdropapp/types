@@ -57,10 +57,7 @@ export declare class NoteExporter {
    * @param options.templateHtml - A custom HTML template. Use `{%title%}`, `{%styles%}`, and `{%body%}` as placeholders.
    * @returns The rendered HTML string.
    */
-  createHTMLWithTemplate(
-    title: string,
-    options?: { templateHtml?: string }
-  ): Promise<string>
+  createHTMLWithTemplate(title: string, options?: { templateHtml?: string }): Promise<string>
 
   /**
    * Convert the parsed Markdown AST to an HTML string.
@@ -125,11 +122,7 @@ export declare class NoteExportHelper {
    * @param pathToSave - The directory to save the HTML file in.
    * @param fileName - An optional file name. If omitted, one is generated from the note title and date.
    */
-  exportNoteAsHtml(
-    note: Note,
-    pathToSave: string,
-    fileName?: string
-  ): Promise<void>
+  exportNoteAsHtml(note: Note, pathToSave: string, fileName?: string): Promise<void>
 
   /**
    * Export a note as a Markdown file.
@@ -138,11 +131,7 @@ export declare class NoteExportHelper {
    * @param pathToSave - The directory to save the Markdown file in.
    * @param fileName - An optional file name. If omitted, one is generated from the note title and date.
    */
-  exportNoteAsMarkdown(
-    note: Note,
-    pathToSave: string,
-    fileName?: string
-  ): Promise<void>
+  exportNoteAsMarkdown(note: Note, pathToSave: string, fileName?: string): Promise<void>
 
   /**
    * Create a webview element with the rendered note content. Used for printing.

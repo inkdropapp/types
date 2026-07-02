@@ -6,12 +6,7 @@ export {
   NotificationOptions
 } from './notification-manager'
 
-export {
-  Config,
-  ConfigSchema,
-  ConfigSchemaType,
-  SchemaEnforcer
-} from './config'
+export { Config, ConfigSchema, ConfigSchemaType, SchemaEnforcer } from './config'
 
 export { StyleManager, StyleElement } from './style-manager'
 
@@ -117,11 +112,7 @@ export {
 
 export { Logger, LogFunction, createLogger } from './inkdrop-module/logger'
 
-export {
-  useModal,
-  UseModalResult,
-  ModalState
-} from './inkdrop-module/use-modal'
+export { useModal, UseModalResult, ModalState } from './inkdrop-module/use-modal'
 
 export {
   ModelNote,
@@ -132,11 +123,7 @@ export {
   PutResult
 } from './inkdrop-module/models'
 
-export {
-  NoteExporter,
-  NoteExportHelper,
-  RenderOptions
-} from './inkdrop-module/export-utils'
+export { NoteExporter, NoteExportHelper, RenderOptions } from './inkdrop-module/export-utils'
 
 export { NoteImporter, NoteImportHelper } from './inkdrop-module/import-utils'
 
@@ -146,10 +133,7 @@ export { LinkFormatItem, LinkFormatsConfig } from './link-formats'
 
 export { Button, ButtonProps } from './components/button'
 
-export {
-  CommandButton,
-  CommandButtonProps
-} from './components/command-button'
+export { CommandButton, CommandButtonProps } from './components/command-button'
 
 export { Modal, ModalProps } from './components/modal'
 
@@ -161,10 +145,7 @@ export {
   DialogActionsProps
 } from './components/dialog'
 
-export {
-  NotebookListBar,
-  NotebookListBarProps
-} from './components/notebook-list-bar'
+export { NotebookListBar, NotebookListBarProps } from './components/notebook-list-bar'
 
 /// <reference path="./inkdrop-module/index.d.ts" />
 

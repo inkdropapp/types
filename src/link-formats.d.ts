@@ -37,8 +37,5 @@ export type LinkFormatsConfig = {
    * and call `update` with the full updated format list whenever new data arrives.
    * Return a cleanup function to abort pending work.
    */
-  onActivate?: (
-    url: string,
-    update: (formats: LinkFormatItem[]) => void
-  ) => () => void
+  onActivate?: (url: string, update: (formats: LinkFormatItem[]) => void) => () => void
 }

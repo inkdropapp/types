@@ -27,11 +27,7 @@ export interface ConfigSchema {
   enum?: any[]
 }
 
-export type SchemaEnforcer = (
-  keyPath: string | null,
-  value: any,
-  schema: ConfigSchema
-) => any
+export type SchemaEnforcer = (keyPath: string | null, value: any, schema: ConfigSchema) => any
 
 /**
  * Used to access all of Inkdrop's configuration details.
@@ -73,18 +69,13 @@ export declare class Config {
    * @param enforcerFunction - The function that attempts to coerce/validate a value.
    * @returns The total number of enforcers now registered for that type.
    */
-  static addSchemaEnforcer(
-    typeName: string,
-    enforcerFunction: SchemaEnforcer
-  ): number
+  static addSchemaEnforcer(typeName: string, enforcerFunction: SchemaEnforcer): number
   /**
    * Registers multiple schema enforcer functions in one call.
    * @param filters - An object whose keys are type names and whose values
    *   are objects of named enforcer functions.
    */
-  static addSchemaEnforcers(
-    filters: Record<string, Record<string, SchemaEnforcer>>
-  ): void
+  static addSchemaEnforcers(filters: Record<string, Record<string, SchemaEnforcer>>): void
   /**
    * Executes all schema enforcers for a given keyPath and schema.
    * @param keyPath - The configuration key path.
@@ -92,11 +83,7 @@ export declare class Config {
    * @param schema - A schema object containing type info.
    * @returns The coerced value if successful.
    */
-  static executeSchemaEnforcers(
-    keyPath: string | null,
-    value: any,
-    schema: ConfigSchema
-  ): any
+  static executeSchemaEnforcers(keyPath: string | null, value: any, schema: ConfigSchema): any
 
   settings: Record<string, any> | null
 
@@ -118,20 +105,14 @@ export declare class Config {
    * @param callback - Called immediately with the current value and again on changes.
    * @returns A {@link Disposable} to unsubscribe.
    */
-  observe(
-    keyPath: string,
-    options: { scope?: any },
-    callback: (value: any) => void
-  ): Disposable
+  observe(keyPath: string, options: { scope?: any }, callback: (value: any) => void): Disposable
   /**
    * Add a listener for changes to any key.
    *
    * @param callback - Called with an event object describing old/new values.
    * @returns A {@link Disposable} to unsubscribe.
    */
-  onDidChange(
-    callback: (event: { newValue: any; oldValue: any }) => void
-  ): Disposable
+  onDidChange(callback: (event: { newValue: any; oldValue: any }) => void): Disposable
   /**
    * Add a listener for changes to a given key path.
    *
@@ -177,10 +158,7 @@ export declare class Config {
    * @param options - The same options accepted by `get`.
    * @returns An array of `{ scopeSelector, value }` objects.
    */
-  getAll(
-    keyPath: string,
-    options?: any
-  ): Array<{ scopeSelector: string; value: any }>
+  getAll(keyPath: string, options?: any): Array<{ scopeSelector: string; value: any }>
   /**
    * Sets the value for a configuration setting.
    *

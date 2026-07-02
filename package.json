@@ -2,15 +2,6 @@
   "name": "@inkdropapp/types",
   "version": "0.0.8",
   "description": "Some helper methods needed to simplify the development of plugins and themes",
-  "main": "",
-  "types": "src/index.d.ts",
-  "scripts": {
-    "format": "prettier --write ."
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/inkdropapp/types.git"
-  },
   "contributors": [
     {
       "name": "Takuya Matsuyama",
@@ -18,6 +9,17 @@
       "url": "https://www.inkdrop.app/"
     }
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/inkdropapp/types.git"
+  },
+  "main": "",
+  "types": "src/index.d.ts",
+  "scripts": {
+    "format": "oxfmt",
+    "lint": "oxlint",
+    "typecheck": "tsc --noEmit"
+  },
   "dependencies": {
     "@codemirror/commands": "^6.10.4",
     "@codemirror/language": "^6.12.4",
@@ -31,7 +33,8 @@
     "redux": "^5.0.1"
   },
   "devDependencies": {
-    "prettier": "^3.9.4",
+    "oxfmt": "^0.57.0",
+    "oxlint": "^1.72.0",
     "typescript": "^6.0.3"
   }
 }

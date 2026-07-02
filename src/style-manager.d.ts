@@ -28,30 +28,22 @@ export declare class StyleManager {
    *   `.cloneNode(true)` on it.
    * @returns A {@link Disposable} on which `.dispose()` can be called to cancel the subscription.
    */
-  observeStyleElements(
-    callback: (styleElement: StyleElement) => void
-  ): Disposable
+  observeStyleElements(callback: (styleElement: StyleElement) => void): Disposable
   /**
    * Invoke `callback` when a style element is added.
    * @returns A {@link Disposable} on which `.dispose()` can be called to cancel the subscription.
    */
-  onDidAddStyleElement(
-    callback: (styleElement: StyleElement) => void
-  ): Disposable
+  onDidAddStyleElement(callback: (styleElement: StyleElement) => void): Disposable
   /**
    * Invoke `callback` when a style element is removed.
    * @returns A {@link Disposable} on which `.dispose()` can be called to cancel the subscription.
    */
-  onDidRemoveStyleElement(
-    callback: (styleElement: StyleElement) => void
-  ): Disposable
+  onDidRemoveStyleElement(callback: (styleElement: StyleElement) => void): Disposable
   /**
    * Invoke `callback` when an existing style element is updated.
    * @returns A {@link Disposable} on which `.dispose()` can be called to cancel the subscription.
    */
-  onDidUpdateStyleElement(
-    callback: (styleElement: StyleElement) => void
-  ): Disposable
+  onDidUpdateStyleElement(callback: (styleElement: StyleElement) => void): Disposable
   /** Get all loaded style elements. */
   getStyleElements(): StyleElement[]
   /**

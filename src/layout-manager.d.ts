@@ -1,5 +1,5 @@
-import { type ComponentType } from 'react'
 import { Disposable } from 'event-kit'
+import { type ComponentType } from 'react'
 
 /**
  * Manages the layout of React components in named regions of the UI.
@@ -32,10 +32,7 @@ export declare class LayoutManager {
    * @param componentClassName - The component class name to find.
    * @returns The index, or `-1` if not found.
    */
-  indexOfComponentInLayout(
-    layoutName: string,
-    componentClassName: string
-  ): number
+  indexOfComponentInLayout(layoutName: string, componentClassName: string): number
   /**
    * Add a component to the end of a layout.
    * @param layoutName - The layout name.
@@ -69,18 +66,12 @@ export declare class LayoutManager {
    * @param layoutName - The layout name.
    * @param componentClassName - The component class name to remove.
    */
-  removeComponentFromLayout(
-    layoutName: string,
-    componentClassName: string
-  ): void
+  removeComponentFromLayout(layoutName: string, componentClassName: string): void
   /**
    * Invoke the given callback when a layout changes.
    * @param name - The layout name to watch.
    * @param callback - Called with the new component list when the layout changes.
    * @returns A {@link Disposable} to unsubscribe.
    */
-  onLayoutChange(
-    name: string,
-    callback: (components: string[]) => any
-  ): Disposable
+  onLayoutChange(name: string, callback: (components: string[]) => any): Disposable
 }
