@@ -86,7 +86,5 @@ export declare class IPCWindow {
    * Stop a find-in-page request.
    * @param action - What to do with the selection after stopping.
    */
-  stopFindInPage(
-    action: 'clearSelection' | 'keepSelection' | 'activateSelection'
-  ): Promise<void>
+  stopFindInPage(action: 'clearSelection' | 'keepSelection' | 'activateSelection'): Promise<void>
 }

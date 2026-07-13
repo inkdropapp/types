@@ -31,9 +31,7 @@ export interface IDBNote {
   /** Get a note by its ID. */
   get(docId: string, options?: Record<string, any>): Promise<Note>
   /** Create or update a note. */
-  put(
-    doc: Note & { _rev?: string }
-  ): Promise<PouchDBPutResult & { timestamp: number }>
+  put(doc: Note & { _rev?: string }): Promise<PouchDBPutResult & { timestamp: number }>
   /** Remove a note by its ID. */
   remove(docId: string, rev?: string): Promise<PouchDBPutResult>
   /** Remove multiple notes by their IDs. */
@@ -55,10 +53,7 @@ export interface IDBNote {
   /** Find notes with a specific tag. */
   findWithTag(tagId: string, opts?: NoteQueryOptions): Promise<NoteQueryResult>
   /** Find notes with a specific status. */
-  findWithStatus(
-    status: NoteStatus,
-    opts?: NoteQueryOptions
-  ): Promise<NoteQueryResult>
+  findWithStatus(status: NoteStatus, opts?: NoteQueryOptions): Promise<NoteQueryResult>
   /** Search notes with a parsed query. */
   searchWithQuery(query: any, opts?: any): Promise<Note[] | string[]>
 }
@@ -147,11 +142,7 @@ export interface IDBUtils {
    * @param newParentBookId - The new parent notebook ID, or `null` for root.
    * @param order - The sort order position.
    */
-  moveBook(
-    bookId: string,
-    newParentBookId: string | null,
-    order: number
-  ): Promise<Book>
+  moveBook(bookId: string, newParentBookId: string | null, order: number): Promise<Book>
   /** Move all notes in a notebook to trash. */
   moveNotesInBookToTrash(
     bookId: string,

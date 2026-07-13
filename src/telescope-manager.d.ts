@@ -51,10 +51,7 @@ export interface TelescopeResult {
    * the input. Should return an array of numbers where each pair of
    * adjacent numbers provide the start and end of a range.
    */
-  getMatch?: (
-    item: TelescopeSourceItem,
-    matched?: readonly number[]
-  ) => readonly number[]
+  getMatch?: (item: TelescopeSourceItem, matched?: readonly number[]) => readonly number[]
 }
 
 export interface TelescopeAction {
@@ -107,9 +104,7 @@ export declare abstract class TelescopeSource {
    * Search for results.
    * @param context - The current telescope context including query and state.
    */
-  abstract getItems(
-    context: TelescopeContext
-  ): Promise<TelescopeResult> | TelescopeResult
+  abstract getItems(context: TelescopeContext): Promise<TelescopeResult> | TelescopeResult
   /**
    * Apply the selected item.
    * @param item - The selected item to apply.

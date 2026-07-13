@@ -1,5 +1,5 @@
-import { type ComponentType } from 'react'
 import { Disposable } from 'event-kit'
+import { type ComponentType } from 'react'
 
 /**
  * Manages React component classes that can be referenced by name

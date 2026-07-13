@@ -1,5 +1,5 @@
-import type { Environment } from './environment'
 import type { Config, ConfigSchema } from './config'
+import type { Environment } from './environment'
 
 /**
  * The lifecycle contract for an Inkdrop plugin's main module.

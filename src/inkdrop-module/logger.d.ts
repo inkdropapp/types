@@ -46,7 +46,4 @@ export interface Logger {
  * logger.info('Plugin loaded')
  * ```
  */
-export declare function createLogger(
-  name: string,
-  colorEnabled?: boolean
-): Logger
+export declare function createLogger(name: string, colorEnabled?: boolean): Logger

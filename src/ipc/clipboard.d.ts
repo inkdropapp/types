@@ -23,7 +23,5 @@ export declare class IPCClipboard {
    * @param options - Options for sharing the attachment.
    * @returns The file attachment ID, or `null` if no image was on the clipboard.
    */
-  saveAsImageAttachment(options: {
-    publicIn?: string[]
-  }): Promise<string | null>
+  saveAsImageAttachment(options: { publicIn?: string[] }): Promise<string | null>
 }

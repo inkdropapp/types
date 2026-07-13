@@ -5,9 +5,7 @@ import { Disposable } from 'event-kit'
  * members onto the dispatched `CustomEvent` via prototype-chain injection
  * (see inkdrop-keymap's `command-event.js`).
  */
-export interface CommandEvent<
-  CommandParams = any | undefined
-> extends CustomEvent<CommandParams> {
+export interface CommandEvent<CommandParams = any | undefined> extends CustomEvent<CommandParams> {
   /** `true` once `abortKeyBinding()` has been called. */
   keyBindingAborted: boolean
   /** `true` once propagation has been stopped via the methods below. */
@@ -96,11 +94,7 @@ export declare class CommandRegistry {
    * @param callback - The callback or listener to invoke when the command is dispatched.
    * @returns A {@link Disposable} that can be used to unregister the command.
    */
-  add(
-    target: Element,
-    commandName: string,
-    callback: CommandCallback | CommandListener
-  ): Disposable
+  add(target: Element, commandName: string, callback: CommandCallback | CommandListener): Disposable
 
   /**
    * Get the number of registered listeners for a specific command.

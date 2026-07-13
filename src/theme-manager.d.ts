@@ -1,4 +1,5 @@
 import { Disposable } from 'event-kit'
+
 import type { Package } from './package-manager'
 
 /**

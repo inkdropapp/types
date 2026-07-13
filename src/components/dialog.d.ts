@@ -1,4 +1,5 @@
 import type React from 'react'
+
 import type { ModalProps } from './modal'
 
 /** Props for the {@link Dialog} component. */
