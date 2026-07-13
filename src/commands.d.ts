@@ -403,9 +403,6 @@ export type NoteListBarLayoutCommands = {
   'core:note-list-show-all-notes': {
     selectFirstNote?: boolean
   }
-  'core:note-list-show-pinned-notes': {
-    selectFirstNote?: boolean
-  }
   'core:note-list-show-notes-in-book': {
     bookId: string
     tagId?: string
