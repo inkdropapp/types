@@ -70,6 +70,8 @@ export declare class ModelNote {
   _conflicts: string[] | null | undefined
   /** A timestamp used for ordering. */
   timestamp: number
+  /** The ID of the template note this note was created from, if any. */
+  sourceTemplateId: string | null | undefined
 
   /**
    * Load a note from the local database by its ID.
