@@ -1,5 +1,18 @@
 import { Disposable } from 'event-kit'
 
+/** Options for {@link IPCWindow.setVisibleOnAllWorkspaces}. */
+export interface VisibleOnAllWorkspacesOptions {
+  /** Whether the window is visible above fullscreen windows. macOS only. */
+  visibleOnFullScreen?: boolean
+  /**
+   * Skips transforming the process type between `UIElementApplication` and
+   * `ForegroundApplication`, which otherwise hides the window and the dock for
+   * a short time on every call. Only safe when the app is already a
+   * `UIElementApplication`. macOS only.
+   */
+  skipTransformProcessType?: boolean
+}
+
 /**
  * Provides access to the Electron BrowserWindow via IPC.
  *
@@ -67,6 +80,21 @@ export declare class IPCWindow {
   isFullScreen(): Promise<boolean>
   /** Set the window full-screen state. */
   setFullScreen(fullScreen: boolean): Promise<void>
+  /** Check whether the window is floating on top of other windows. */
+  isAlwaysOnTop(): Promise<boolean>
+  /** Set whether the window floats on top of other windows. */
+  setAlwaysOnTop(alwaysOnTop: boolean): Promise<void>
+  /** Check whether the window is visible on all workspaces. */
+  isVisibleOnAllWorkspaces(): Promise<boolean>
+  /**
+   * Set whether the window is visible on all workspaces.
+   * @param visible - Whether the window shows on every workspace.
+   * @param options - Extra macOS-only behavior.
+   */
+  setVisibleOnAllWorkspaces(
+    visible: boolean,
+    options?: VisibleOnAllWorkspacesOptions
+  ): Promise<void>
   /** Open the developer tools. */
   openDevTools(): Promise<void>
   /** Close the developer tools. */

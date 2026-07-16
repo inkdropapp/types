@@ -67,7 +67,7 @@ export {
   NoteQueryResult
 } from './ipc/db'
 
-export { IPCWindow } from './ipc/window'
+export { IPCWindow, VisibleOnAllWorkspacesOptions } from './ipc/window'
 export { IPCDialog } from './ipc/dialog'
 export { IPCClipboard } from './ipc/clipboard'
 
