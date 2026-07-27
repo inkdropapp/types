@@ -109,6 +109,39 @@ export declare class NoteExporter {
  */
 export declare class NoteExportHelper {
   /**
+   * Make arbitrary text — a note title, a notebook name — safe to use as a
+   * single file or folder name.
+   *
+   * Titles and notebook names are free-form and routinely contain characters
+   * the filesystem rejects (`:` on Windows, `/` anywhere) or names Windows
+   * reserves (`CON`, `PRN`, …). Writing one of those straight to disk throws,
+   * so anything derived from user text has to come through here rather than
+   * being interpolated into a path directly. Sanitizing can consume the name
+   * entirely (e.g. `???`), hence the fallback.
+   *
+   * Pass `extension` rather than appending one yourself: the result is capped
+   * at the filesystem's 255-byte limit, and only this method can reserve room
+   * so the extension survives truncation of a long title.
+   *
+   * @param name - The raw note title or notebook name.
+   * @param options.replacement - Substituted for each rejected character. Rejected characters are removed by default.
+   * @param options.fallback - Used when sanitizing leaves nothing behind. Defaults to `'Untitled'`.
+   * @param options.extension - Extension to append, e.g. `.md`. Room is reserved for it before truncating.
+   * @returns A name safe to use as one path segment — never empty.
+   *
+   * @example
+   * ```typescript
+   * import { exportUtils } from 'inkdrop'
+   * const fileName = exportUtils.sanitizeFileName(note.title, { extension: '.md' })
+   * const dirName = exportUtils.sanitizeFileName(book.name, { replacement: '-' })
+   * ```
+   */
+  sanitizeFileName(
+    name: string,
+    options?: { replacement?: string; fallback?: string; extension?: string }
+  ): string
+
+  /**
    * Create a {@link NoteExporter} processor for the given note.
    * @param note - The note to process.
    * @returns A processor instance, or `null` if the note has no body.
