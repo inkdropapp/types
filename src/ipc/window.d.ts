@@ -95,6 +95,13 @@ export declare class IPCWindow {
     visible: boolean,
     options?: VisibleOnAllWorkspacesOptions
   ): Promise<void>
+  /** Get the window opacity, between `0.0` and `1.0`. Always `1` on Linux. */
+  getOpacity(): Promise<number>
+  /**
+   * Set the window opacity.
+   * @param opacity - Between `0.0` (fully transparent) and `1.0` (fully opaque). Does nothing on Linux.
+   */
+  setOpacity(opacity: number): Promise<void>
   /** Open the developer tools. */
   openDevTools(): Promise<void>
   /** Close the developer tools. */
