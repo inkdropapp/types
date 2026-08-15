@@ -183,6 +183,10 @@ export type MDELocalCommands = {
   'core:insert-alert-important': undefined
   'core:insert-alert-warning': undefined
   'core:insert-alert-caution': undefined
+  'editor:resize-image-auto': undefined
+  'editor:resize-image-small': undefined
+  'editor:resize-image-half': undefined
+  'editor:resize-image-full': undefined
   'editor:select-lines-upward': undefined
   'editor:select-lines-downward': undefined
   'editor:new-line-continue-markup': undefined
