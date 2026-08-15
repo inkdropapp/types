@@ -231,6 +231,21 @@ export type MDELocalCommands = {
   'editor:delete-wrapped-line-right': undefined
   'editor:move-line-up': undefined
   'editor:move-line-down': undefined
+  'editor:copy-line-up': undefined
+  'editor:copy-line-down': undefined
+  'editor:insert-blank-line': undefined
+  'editor:select-line': undefined
+  'editor:select-parent-syntax': undefined
+  'editor:go-matching-bracket': undefined
+  'editor:select-matching-bracket': undefined
+  'editor:go-subword-left': undefined
+  'editor:go-subword-right': undefined
+  'editor:select-subword-left': undefined
+  'editor:select-subword-right': undefined
+  'editor:select-next-occurrence': undefined
+  'editor:select-selection-matches': undefined
+  'editor:toggle-comment': undefined
+  'editor:toggle-line-comment': undefined
   'editor:undo-selection': undefined
   'editor:redo-selection': undefined
   'editor:indent-less': undefined
