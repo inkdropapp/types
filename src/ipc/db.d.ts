@@ -46,8 +46,6 @@ export interface IDBNote {
   queryWithFTS(query: any): Promise<NoteQueryResult>
   /** Get all notes. */
   all(opts?: NoteQueryOptions): Promise<NoteQueryResult>
-  /** Find all pinned notes. */
-  findPinned(opts?: NoteQueryOptions): Promise<NoteQueryResult>
   /** Find notes in a specific notebook. */
   findInBook(bookId: string, opts?: NoteQueryOptions): Promise<NoteQueryResult>
   /** Find notes with a specific tag. */
