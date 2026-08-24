@@ -3,6 +3,9 @@
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "bundler",
+    "paths": {
+      "@inkdropapp/types/*": ["./src/*"]
+    },
     "lib": ["ESNext", "DOM"],
     "declaration": true,
     "emitDeclarationOnly": true,

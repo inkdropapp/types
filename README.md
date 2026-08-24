@@ -17,9 +17,6 @@ Add `@inkdropapp/types` to your `tsconfig.json`:
 ```json
 {
   "compilerOptions": {
-    "paths": {
-      "inkdrop": ["./node_modules/@inkdropapp/types/src/inkdrop-module/index.d.ts"]
-    },
     "types": ["@inkdropapp/types"]
   }
 }

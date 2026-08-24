@@ -1,3 +1,6 @@
+// oxlint-disable-next-line typescript/triple-slash-reference
+/// <reference path="./inkdrop-module/ambient.d.ts" />
+
 export {
   Notification,
   NotificationManager,
@@ -146,8 +149,6 @@ export {
 } from './components/dialog'
 
 export { NotebookListBar, NotebookListBarProps } from './components/notebook-list-bar'
-
-/// <reference path="./inkdrop-module/index.d.ts" />
 
 import type { Environment } from './environment'
 
