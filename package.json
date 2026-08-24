@@ -1,6 +1,6 @@
 {
   "name": "@inkdropapp/types",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Some helper methods needed to simplify the development of plugins and themes",
   "contributors": [
     {
