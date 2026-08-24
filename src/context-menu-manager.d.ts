@@ -30,7 +30,7 @@ export interface ContextMenuItem {
  * Provides a registry for commands that you'd like to appear in the
  * context menu.
  *
- * An instance of this class is always available as the `inkdrop.contextMenu` global.
+ * Available as `env.contextMenu` in your plugin's `activate(env: Environment)` method.
  */
 export declare class ContextMenuManager {
   /**

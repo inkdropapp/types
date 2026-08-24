@@ -5,7 +5,7 @@ import type { Package } from './package-manager'
 /**
  * Handles loading and activating available themes.
  *
- * An instance of this class is always available as the `inkdrop.themes` global.
+ * Available as `env.themes` in your plugin's `activate(env: Environment)` method.
  */
 export declare class ThemeManager {
   /**

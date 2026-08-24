@@ -32,7 +32,7 @@ export interface MenuItem {
  * Provides a registry for menu items that you'd like to appear in the
  * application menu.
  *
- * An instance of this class is always available as the `inkdrop.menu` global.
+ * Available as `env.menu` in your plugin's `activate(env: Environment)` method.
  */
 export declare class MenuManager {
   /**

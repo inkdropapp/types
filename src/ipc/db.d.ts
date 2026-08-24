@@ -159,7 +159,7 @@ export interface IDBUtils {
 /**
  * Provides access to the local PouchDB database via IPC.
  *
- * An instance of this class is always available as the `inkdrop.localDB` global.
+ * Available as `env.localDB` in your plugin's `activate(env: Environment)` method.
  */
 export declare class IPCLocalDatabase {
   /** Notes database. */

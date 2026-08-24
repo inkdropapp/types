@@ -79,7 +79,7 @@ export declare class Notification {
  * A notification manager used to create {@link Notification}s to be shown
  * to the user.
  *
- * An instance of this class is always available as the `inkdrop.notifications` global.
+ * Available as `env.notifications` in your plugin's `activate(env: Environment)` method.
  */
 export declare class NotificationManager {
   notifications: Notification[]

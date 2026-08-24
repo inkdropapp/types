@@ -93,7 +93,7 @@ export interface MarkdownRenderResult {
 /**
  * Renders Markdown strings into React element trees.
  *
- * An instance of this class is always available as the `inkdrop.markdownRenderer` global.
+ * Available as `env.markdownRenderer` in your plugin's `activate(env: Environment)` method.
  *
  * You can extend the rendering pipeline by adding remark/rehype plugins or
  * custom React components.

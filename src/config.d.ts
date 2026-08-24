@@ -32,7 +32,7 @@ export type SchemaEnforcer = (keyPath: string | null, value: any, schema: Config
 /**
  * Used to access all of Inkdrop's configuration details.
  *
- * An instance of this class is always available as the `inkdrop.config` global.
+ * Available as `env.config` in your plugin's `activate(env: Environment)` method.
  *
  * ## Getting and setting config settings
  *

@@ -54,7 +54,7 @@ export interface Package {
 /**
  * Package manager for coordinating the lifecycle of Inkdrop packages.
  *
- * An instance of this class is always available as the `inkdrop.packages` global.
+ * Available as `env.packages` in your plugin's `activate(env: Environment)` method.
  *
  * Packages can be loaded, activated, and deactivated, and unloaded:
  * - Loading a package reads and parses the package's metadata and resources

@@ -1,7 +1,7 @@
 /**
  * Provides access to native dialog boxes via IPC.
  *
- * An instance of this class is always available as the `inkdrop.dialog` global.
+ * Available as `env.dialog` in your plugin's `activate(env: Environment)` method.
  */
 export declare class IPCDialog {
   /**

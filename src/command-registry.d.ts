@@ -60,7 +60,7 @@ export declare class CommandDescriptor {
  * Associates listener functions with commands in a context-sensitive way
  * using DOM elements.
  *
- * An instance of this class is always available as the `inkdrop.commands` global.
+ * Available as `env.commands` in your plugin's `activate(env: Environment)` method.
  *
  * @example
  * ```typescript

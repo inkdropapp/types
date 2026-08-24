@@ -17,7 +17,7 @@ export interface KeyBinding {
 /**
  * Allows you to associate key bindings with commands.
  *
- * An instance of this class is always available as the `inkdrop.keymaps` global.
+ * Available as `env.keymaps` in your plugin's `activate(env: Environment)` method.
  */
 export declare class KeymapManager {
   /**

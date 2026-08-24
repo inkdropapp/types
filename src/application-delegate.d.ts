@@ -1,7 +1,7 @@
 /**
  * Handles application-level actions such as opening URIs and checking for updates.
  *
- * An instance of this class is always available as the `inkdrop.appDelegate` global.
+ * Available as `env.appDelegate` in your plugin's `activate(env: Environment)` method.
  */
 export declare class ApplicationDelegate {
   /**

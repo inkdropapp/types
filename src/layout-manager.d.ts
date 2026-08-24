@@ -4,7 +4,7 @@ import { type ComponentType } from 'react'
 /**
  * Manages the layout of React components in named regions of the UI.
  *
- * An instance of this class is always available as the `inkdrop.layouts` global.
+ * Available as `env.layouts` in your plugin's `activate(env: Environment)` method.
  */
 export declare class LayoutManager {
   /**

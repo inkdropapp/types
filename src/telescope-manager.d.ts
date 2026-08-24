@@ -124,7 +124,7 @@ export declare abstract class TelescopeSource {
  * Telescope is a highly extensible fuzzy finder over a set of various sources,
  * such as commands, notebooks, tags, etc.
  *
- * An instance of this class is always available as the `inkdrop.telescope` global.
+ * Available as `env.telescope` in your plugin's `activate(env: Environment)` method.
  */
 export declare class TelescopeManager {
   availableSources: Map<string, TelescopeSource>

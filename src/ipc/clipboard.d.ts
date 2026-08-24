@@ -1,7 +1,7 @@
 /**
  * Provides access to the system clipboard via IPC.
  *
- * An instance of this class is always available as the `inkdrop.clipboard` global.
+ * Available as `env.clipboard` in your plugin's `activate(env: Environment)` method.
  */
 export declare class IPCClipboard {
   /** Read the clipboard as plain text. */

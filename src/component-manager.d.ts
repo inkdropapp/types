@@ -5,7 +5,7 @@ import { type ComponentType } from 'react'
  * Manages React component classes that can be referenced by name
  * throughout the application.
  *
- * An instance of this class is always available as the `inkdrop.components` global.
+ * Available as `env.components` in your plugin's `activate(env: Environment)` method.
  */
 export declare class ComponentManager {
   /** A map of component class names to their React component types. */

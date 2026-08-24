@@ -16,7 +16,7 @@ export interface VisibleOnAllWorkspacesOptions {
 /**
  * Provides access to the Electron BrowserWindow via IPC.
  *
- * An instance of this class is always available as the `inkdrop.window` global.
+ * Available as `env.window` in your plugin's `activate(env: Environment)` method.
  */
 export declare class IPCWindow {
   /** The browser window ID. */
