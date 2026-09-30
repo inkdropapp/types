@@ -102,6 +102,20 @@ export declare class IPCWindow {
    * @param opacity - Between `0.0` (fully transparent) and `1.0` (fully opaque). Does nothing on Linux.
    */
   setOpacity(opacity: number): Promise<void>
+  /** Get the current zoom factor of the window's page. `1` means 100%. */
+  getZoomFactor(): Promise<number>
+  /**
+   * Set the zoom factor of the window's page.
+   * @param factor - Zoom factor; `1` is 100%, `1.5` is 150%. Must be greater than `0`.
+   */
+  setZoomFactor(factor: number): Promise<void>
+  /** Get the current zoom level of the window's page. `0` means the original size. */
+  getZoomLevel(): Promise<number>
+  /**
+   * Set the zoom level of the window's page.
+   * @param level - `0` is the original size; each step above or below zooms in or out by 20%.
+   */
+  setZoomLevel(level: number): Promise<void>
   /** Open the developer tools. */
   openDevTools(): Promise<void>
   /** Close the developer tools. */
