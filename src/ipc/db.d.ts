@@ -8,19 +8,88 @@ export interface PouchDBPutResult {
   rev: string
 }
 
-/** Options for querying notes. */
-export interface NoteQueryOptions {
-  limit?: number
-  skip?: number
-  sort?: Array<Record<string, 'asc' | 'desc'>>
+/**
+ * How a result is delivered, independent of the query: with the documents
+ * loaded (`includeDocs: true`, the default) or as id/rev rows. Not part of a
+ * query or its cursor, so a caller chooses it on every page.
+ */
+export interface NoteQueryResultOptions {
   includeDocs?: boolean
 }
 
-/** Result of a note query. */
-export interface NoteQueryResult<T = Note> {
-  docs: T[]
-  totalRows?: number
+/** Options for the note list finders */
+export interface NoteQueryOptions extends NoteQueryResultOptions {
+  /** Defaults to `true` */
+  pinnedFirst?: boolean
+  /**
+   * Sort entries, first supported key wins; each entry holds one key:
+   * `updatedAt`, `createdAt`, `title`, or `tagCount`.
+   * Defaults to `[{ updatedAt: 'desc' }]`
+   */
+  sort?: Array<Partial<Record<'updatedAt' | 'createdAt' | 'title' | 'tagCount', 'asc' | 'desc'>>>
+  /** `false` = no limit */
+  limit?: number | false
+  skip?: number
 }
+
+/**
+ * Ordering, paging, and output options of a search. `sort` accepts `rank` for
+ * relevance; when omitted or empty it defaults to `[{ rank: 'asc' }]` if there
+ * is a keyword to match, otherwise to `[{ updatedAt: 'desc' }]`.
+ */
+export interface NoteSearchOptions extends Omit<NoteQueryOptions, 'sort'> {
+  /** `rank`: relevance, best first when ascending. Search only, and needs a keyword to match. */
+  sort?: Array<
+    Partial<Record<'updatedAt' | 'createdAt' | 'title' | 'tagCount' | 'rank', 'asc' | 'desc'>>
+  >
+  /** Return where the matches sit in each note's title and body. Defaults to `false` */
+  highlightMatches?: boolean
+}
+
+/** A matched span: `off*` index the whole string, `line`/`ch*` locate it within its line */
+export interface HighlightMarkPosition {
+  offStart: number
+  offEnd: number
+  line: number
+  chStart: number
+  chEnd: number
+}
+
+/** Where a keyword search matched a note's title and body. */
+export interface NoteSearchHighlights {
+  titleHighlights: HighlightMarkPosition[]
+  bodyHighlights: HighlightMarkPosition[]
+}
+
+/** Data attached to each row of a result as `extra`. */
+export interface NoteQueryResultExtraInfo {
+  fts?: NoteSearchHighlights
+}
+
+interface NoteQueryResultBase<IncludeDocs extends boolean, Row> {
+  totalRows: number
+  query: any
+  cursor: any | null
+  includeDocs: IncludeDocs
+  rows: Row[]
+}
+
+/** A result with the documents loaded (`includeDocs: true`, the default). */
+export type NoteQueryResultIncludingDocs<T = Note, V = {}> = NoteQueryResultBase<
+  true,
+  { doc: T; extra?: V }
+>
+
+/** Rows come straight from the index (id and indexed revision), so a rows-only result costs no PouchDB read */
+export type NoteQueryResultNotIncludingDocs<V = {}> = NoteQueryResultBase<
+  false,
+  { id: string; rev: string; extra?: V }
+>
+
+/** `V` is data attached to each row as `extra`, beside the document or its id */
+export type NoteQueryResult<T = Note, V = {}> =
+  | NoteQueryResultIncludingDocs<T, V>
+  | NoteQueryResultNotIncludingDocs<V>
 
 /** Database interface for notes. */
 export interface IDBNote {
@@ -28,8 +97,13 @@ export interface IDBNote {
   createId(): string
   /** Validate whether a string is a valid note ID. */
   validateDocId(docId: string): boolean
-  /** Get a note by its ID. */
+  /**
+   * One note by id, or several in one round trip when given an array: the
+   * documents come back in the order of the ids, and ids that no longer
+   * resolve to a live note are dropped rather than throwing.
+   */
   get(docId: string, options?: Record<string, any>): Promise<Note>
+  get(docIds: string[]): Promise<Note[]>
   /** Create or update a note. */
   put(doc: Note & { _rev?: string }): Promise<PouchDBPutResult & { timestamp: number }>
   /** Remove a note by its ID. */
@@ -38,12 +112,18 @@ export interface IDBNote {
   removeBatch(docIds: string[]): Promise<PouchDBPutResult[]>
   /** Count all notes. */
   countAll(opts?: Record<string, any>): Promise<number>
-  /** Query notes with a Mango-style query. */
-  query(q: any): Promise<NoteQueryResult>
-  /** Query notes using a database index. */
-  queryWithIndex(query: any): Promise<NoteQueryResult>
+  /** Query notes with a list query (`index: 'notes'`) or a full-text search (`index: 'fts'`). */
+  query(
+    q: any,
+    opts?: NoteQueryResultOptions
+  ): Promise<NoteQueryResult<Note, NoteQueryResultExtraInfo>>
+  /** Query notes using the note index. */
+  queryWithIndex(query: any, opts?: NoteQueryResultOptions): Promise<NoteQueryResult>
   /** Query notes using full-text search. */
-  queryWithFTS(query: any): Promise<NoteQueryResult>
+  queryWithFTS(
+    query: any,
+    opts?: NoteQueryResultOptions
+  ): Promise<NoteQueryResult<Note, NoteQueryResultExtraInfo>>
   /** Get all notes. */
   all(opts?: NoteQueryOptions): Promise<NoteQueryResult>
   /** Find notes in a specific notebook. */
@@ -52,8 +132,18 @@ export interface IDBNote {
   findWithTag(tagId: string, opts?: NoteQueryOptions): Promise<NoteQueryResult>
   /** Find notes with a specific status. */
   findWithStatus(status: NoteStatus, opts?: NoteQueryOptions): Promise<NoteQueryResult>
-  /** Search notes with a parsed query. */
-  searchWithQuery(query: any, opts?: any): Promise<Note[] | string[]>
+  /** Number of notes a list with the same filters would contain */
+  count(query?: any): Promise<number>
+  /**
+   * Every note in a notebook, closed statuses included, optionally with its
+   * descendant notebooks and narrowed to one tag
+   */
+  findAllIdsInBook(
+    bookId: string,
+    opts?: { includeChildren?: boolean; tagId?: string }
+  ): Promise<string[]>
+  /** Every note carrying the tag, trash and closed statuses included */
+  findAllIdsWithTag(tagId: string): Promise<string[]>
 }
 
 /** Database interface for notebooks. */
@@ -75,13 +165,13 @@ export interface IDBBook {
   /** Get all notebook IDs. */
   allIds(): Promise<string[]>
   /** Find a notebook by its name. */
-  findWithName(name: string): Promise<Book>
+  findWithName(name: string): Promise<Book | null>
   /** Get the direct children of a notebook. */
   getChildren(parentBookId: string | null): Promise<Book[]>
   /** Get all descendants of a notebook. */
   getAllChildren(parentBookId: string): Promise<Book[]>
-  /** Get the chain of parent notebook IDs. */
-  getParentBookIds(bookId: string, parentBookIds?: string[]): Promise<string[]>
+  /** Ancestor notebook ids, root first */
+  getParentBookIds(bookId: string): Promise<string[]>
 }
 
 /** Database interface for tags. */
@@ -133,7 +223,10 @@ export interface IDBFile {
 /** Database utility operations. */
 export interface IDBUtils {
   /** Full-text search for notes. */
-  search(keyword: string, opts?: any): Promise<NoteQueryResult>
+  search(
+    keyword: string,
+    opts?: NoteSearchOptions
+  ): Promise<NoteQueryResult<Note, NoteQueryResultExtraInfo>>
   /**
    * Move a notebook to a new parent.
    * @param bookId - The notebook to move.
@@ -148,8 +241,6 @@ export interface IDBUtils {
   ): Promise<void>
   /** Delete a notebook and its contents. */
   deleteBook(bookId: string): Promise<any>
-  /** Update a tag's note count. */
-  updateTag(tagId: string): Promise<{ updated: boolean; doc: Tag }>
   /** Update a tag by name. */
   updateTagWithName(name: string): Promise<{ updated: boolean; doc: Tag }>
   /** Delete a tag and remove it from all notes. */

@@ -67,7 +67,14 @@ export {
   IDBUtils,
   PouchDBPutResult,
   NoteQueryOptions,
-  NoteQueryResult
+  NoteQueryResultOptions,
+  NoteSearchOptions,
+  NoteQueryResult,
+  NoteQueryResultIncludingDocs,
+  NoteQueryResultNotIncludingDocs,
+  NoteQueryResultExtraInfo,
+  NoteSearchHighlights,
+  HighlightMarkPosition
 } from './ipc/db'
 
 export { IPCWindow, VisibleOnAllWorkspacesOptions } from './ipc/window'
