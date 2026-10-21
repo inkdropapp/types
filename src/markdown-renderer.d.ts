@@ -6,6 +6,13 @@ export type EmbeddedComponentProps = JSX.IntrinsicElements['a']
 /**
  * Props passed to a custom code block component registered via
  * {@link MarkdownRenderer.remarkCodeComponents}.
+ *
+ * When "Readable Line Length" is enabled, the preview keeps blocks within the
+ * readable column. Add the {@link MDEPreviewUnwrapClassName} class to your
+ * rendered element to let its block grow past the column (up to the pane width)
+ * as far as the element's intrinsic width requires, like tables do. The element
+ * needs an intrinsic width (e.g. `width: max-content`); an element that sizes
+ * itself to its container won't widen the block.
  */
 export type CodeComponentProps = {
   /** The language identifier of the fenced code block (e.g. `'js'`). */
@@ -19,6 +26,12 @@ export type CodeComponentProps = {
   /** The raw lines of the code block. */
   children: string[]
 }
+
+/**
+ * The class name that lets a preview block grow past the readable column.
+ * See {@link CodeComponentProps}.
+ */
+export type MDEPreviewUnwrapClassName = 'mde-preview-unwrap'
 
 /** A React component that renders an embedded content view for a given URL. */
 export type EmbeddedComponent = React.FC<EmbeddedComponentProps>
@@ -105,7 +118,10 @@ export declare class MarkdownRenderer {
   rehypePlugins: any[]
   /** Custom React components to use when rendering Markdown elements. */
   remarkReactComponents: Record<string, any>
-  /** Custom React components to use when rendering code blocks. */
+  /**
+   * Custom React components to use when rendering code blocks.
+   * See {@link CodeComponentProps} for unwrapping wide blocks with "Readable Line Length".
+   */
   remarkCodeComponents: Record<string, any>
   /** Registry for embedding providers that render rich content inline in the preview. */
   embeddings: EmbeddingProviderRegistry

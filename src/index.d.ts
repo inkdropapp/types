@@ -52,6 +52,7 @@ export {
   MarkdownRenderResult,
   MarkdownRendererContextType,
   CodeComponentProps,
+  MDEPreviewUnwrapClassName,
   EmbeddedComponentProps,
   EmbeddedComponent,
   EmbeddingProvider,
