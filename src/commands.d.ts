@@ -420,27 +420,27 @@ export type EditorCommands = {
 export type NoteListBarLayoutCommands = {
   'core:open-first-note': undefined
   'core:note-list-show-all-notes': {
-    selectFirstNote?: boolean
+    autoOpenNote?: boolean
   }
   'core:note-list-show-notes-in-book': {
     bookId: string
     tagId?: string
     status?: NoteStatus
-    selectFirstNote?: boolean
+    autoOpenNote?: boolean
     includeChildren?: boolean
     callback?: () => void
   }
   'core:note-list-show-notes-in-trash': {
-    selectFirstNote?: boolean
+    autoOpenNote?: boolean
     callback?: () => void
   }
   'core:note-list-show-notes-with-tag': {
     tagId: string
-    selectFirstNote?: boolean
+    autoOpenNote?: boolean
   }
   'core:note-list-show-notes-with-status': {
     status: string
-    selectFirstNote?: boolean
+    autoOpenNote?: boolean
   }
   'core:find-global': {
     focus?: boolean
@@ -451,7 +451,7 @@ export type NoteListBarLayoutCommands = {
 export type SidebarNavigationCommands = {
   'core:sidebar-open-workspace-menu': {
     bookId?: string
-    selectFirstNote?: boolean
+    autoOpenNote?: boolean
   }
   'core:sidebar-hide-workspace-menu': undefined
 }
