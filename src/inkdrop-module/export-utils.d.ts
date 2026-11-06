@@ -9,6 +9,54 @@ export type RenderOptions = {
 }
 
 /**
+ * A page size name, or a custom size in inches.
+ */
+export type PrintPageSize =
+  | 'A0'
+  | 'A1'
+  | 'A2'
+  | 'A3'
+  | 'A4'
+  | 'A5'
+  | 'A6'
+  | 'Legal'
+  | 'Letter'
+  | 'Tabloid'
+  | { width: number; height: number }
+
+/**
+ * Options for {@link NoteExportHelper.exportNoteAsPDF}, a subset of Electron's `PrintToPDFOptions`.
+ */
+export type ExportPDFOptions = {
+  /** Paper orientation. Defaults to portrait. */
+  landscape?: boolean
+  /** Whether to print background graphics. Defaults to `false`. */
+  printBackground?: boolean
+  /** Scale of the page rendering. Defaults to `1`. */
+  scale?: number
+  /** Page size. Defaults to `'Letter'`. */
+  pageSize?: PrintPageSize
+  /** Page ranges to print, e.g. `'1-5, 8'`. Defaults to all pages. */
+  pageRanges?: string
+}
+
+/**
+ * Options for {@link NoteExportHelper.printNote}, a subset of Electron's `WebContentsPrintOptions`.
+ */
+export type PrintNoteOptions = {
+  /** Print without showing the print dialog. Defaults to `false`. */
+  silent?: boolean
+  /** Whether to print background graphics. Defaults to `false`. */
+  printBackground?: boolean
+  /** The system name of the printer to use. */
+  deviceName?: string
+  /** Paper orientation. Defaults to portrait. */
+  landscape?: boolean
+  /** Page size. */
+  pageSize?: PrintPageSize
+}
+
+/**
  * A processor for exporting note content to HTML or other formats.
  *
  * Extends the Markdown AST (mdast) note processor with export-specific methods
@@ -167,7 +215,29 @@ export declare class NoteExportHelper {
   exportNoteAsMarkdown(note: Note, pathToSave: string, fileName?: string): Promise<void>
 
   /**
+   * Render a note in an off-screen window and save it as a PDF file.
+   * @param note - The note to export.
+   * @param pdfFilePath - The path of the PDF file to write.
+   * @param options - PDF options.
+   * @throws If rendering or writing the PDF fails.
+   */
+  exportNoteAsPDF(note: Note, pdfFilePath: string, options?: ExportPDFOptions): Promise<void>
+
+  /**
+   * Render a note in an off-screen window and open the system print dialog.
+   * @param note - The note to print.
+   * @param options - Print options.
+   * @returns Whether it printed. `failureReason` is set when it didn't,
+   *   including when the user canceled the dialog ("Print job canceled").
+   */
+  printNote(
+    note: Note,
+    options?: PrintNoteOptions
+  ): Promise<{ success: boolean; failureReason?: string }>
+
+  /**
    * Create a webview element with the rendered note content. Used for printing.
+   * @deprecated Use {@link exportNoteAsPDF} or {@link printNote}.
    * @param note - The note to render.
    * @returns The webview HTML element.
    */
@@ -175,6 +245,7 @@ export declare class NoteExportHelper {
 
   /**
    * Remove a webview element created by {@link createWebView}.
+   * @deprecated Use {@link exportNoteAsPDF} or {@link printNote}.
    * @param webView - The webview element to remove.
    * @param delay - Delay in milliseconds before removal. Defaults to 30 minutes.
    */

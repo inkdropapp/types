@@ -134,7 +134,14 @@ export {
   PutResult
 } from './inkdrop-module/models'
 
-export { NoteExporter, NoteExportHelper, RenderOptions } from './inkdrop-module/export-utils'
+export {
+  ExportPDFOptions,
+  NoteExporter,
+  NoteExportHelper,
+  PrintNoteOptions,
+  PrintPageSize,
+  RenderOptions
+} from './inkdrop-module/export-utils'
 
 export { NoteImporter, NoteImportHelper } from './inkdrop-module/import-utils'
 
