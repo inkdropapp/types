@@ -1,3 +1,10 @@
+> [!IMPORTANT]
+> This repository is archived. The code now lives in the Inkdrop monorepo, under `packages/types`:
+> https://github.com/inkdropapp/inkdrop
+>
+> The monorepo is private. `@inkdropapp/types` is still published to npm:
+> https://npmx.dev/package/@inkdropapp/types
+
 # @inkdropapp/types
 
 TypeScript type definitions for [Inkdrop](https://www.inkdrop.app/) plugin development.
